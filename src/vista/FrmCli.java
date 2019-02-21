@@ -5,6 +5,11 @@
  */
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Oscar
@@ -17,6 +22,72 @@ public class FrmCli extends javax.swing.JInternalFrame {
     public FrmCli() {
         initComponents();
     }
+
+    public JButton getBtnAddCliente() {
+        return btnAddCliente;
+    }
+
+    public void setBtnAddCliente(JButton btnAddCliente) {
+        this.btnAddCliente = btnAddCliente;
+    }
+
+    public JButton getBtnCancelCliente() {
+        return btnCancelCliente;
+    }
+
+    public void setBtnCancelCliente(JButton btnCancelCliente) {
+        this.btnCancelCliente = btnCancelCliente;
+    }
+
+    public JComboBox<String> getCbCliente() {
+        return cbCliente;
+    }
+
+    public void setCbCliente(JComboBox<String> cbCliente) {
+        this.cbCliente = cbCliente;
+    }
+
+    public JTextArea getTxaCliente() {
+        return txaCliente;
+    }
+
+    public void setTxaCliente(JTextArea txaCliente) {
+        this.txaCliente = txaCliente;
+    }
+
+    public JTextField getTxtIdCliente() {
+        return txtIdCliente;
+    }
+
+    public void setTxtIdCliente(JTextField txtIdCliente) {
+        this.txtIdCliente = txtIdCliente;
+    }
+
+    public JTextField getTxtNomCliente() {
+        return txtNomCliente;
+    }
+
+    public void setTxtNomCliente(JTextField txtNomCliente) {
+        this.txtNomCliente = txtNomCliente;
+    }
+
+    public JTextField getTxtPagoCliente() {
+        return txtPagoCliente;
+    }
+
+    public void setTxtPagoCliente(JTextField txtPagoCliente) {
+        this.txtPagoCliente = txtPagoCliente;
+    }
+
+    public JTextField getTxtTelCliente() {
+        return txtTelCliente;
+    }
+
+    public void setTxtTelCliente(JTextField txtTelCliente) {
+        this.txtTelCliente = txtTelCliente;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,12 +105,12 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbCliente = new javax.swing.JComboBox<>();
         jPanel7 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
+        txtIdCliente = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -47,7 +118,7 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel20 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
+        txtNomCliente = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -55,7 +126,7 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel22 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
-        jTextField9 = new javax.swing.JTextField();
+        txtTelCliente = new javax.swing.JTextField();
         jPanel24 = new javax.swing.JPanel();
         jPanel28 = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
@@ -63,18 +134,18 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel25 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
-        jTextField10 = new javax.swing.JTextField();
+        txtPagoCliente = new javax.swing.JTextField();
         jPanel31 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
         jPanel27 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnAddCliente = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnCancelCliente = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaCliente = new javax.swing.JTextArea();
 
         setClosable(true);
         setIconifiable(true);
@@ -97,8 +168,8 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel17.add(jPanel5, java.awt.BorderLayout.PAGE_END);
         jPanel17.add(jPanel6, java.awt.BorderLayout.LINE_START);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adulto", "Niño" }));
-        jPanel17.add(jComboBox1, java.awt.BorderLayout.CENTER);
+        cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adulto", "Niño" }));
+        jPanel17.add(cbCliente, java.awt.BorderLayout.CENTER);
         jPanel17.add(jPanel7, java.awt.BorderLayout.LINE_END);
 
         jPanel1.add(jPanel17);
@@ -112,7 +183,7 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel1.add(jPanel18);
 
         jPanel19.setLayout(new java.awt.BorderLayout());
-        jPanel19.add(jTextField7, java.awt.BorderLayout.CENTER);
+        jPanel19.add(txtIdCliente, java.awt.BorderLayout.CENTER);
         jPanel19.add(jPanel8, java.awt.BorderLayout.PAGE_START);
         jPanel19.add(jPanel9, java.awt.BorderLayout.PAGE_END);
         jPanel19.add(jPanel10, java.awt.BorderLayout.LINE_START);
@@ -129,7 +200,7 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel1.add(jPanel20);
 
         jPanel21.setLayout(new java.awt.BorderLayout());
-        jPanel21.add(jTextField8, java.awt.BorderLayout.CENTER);
+        jPanel21.add(txtNomCliente, java.awt.BorderLayout.CENTER);
         jPanel21.add(jPanel12, java.awt.BorderLayout.PAGE_START);
         jPanel21.add(jPanel13, java.awt.BorderLayout.PAGE_END);
         jPanel21.add(jPanel14, java.awt.BorderLayout.LINE_START);
@@ -147,12 +218,12 @@ public class FrmCli extends javax.swing.JInternalFrame {
 
         jPanel23.setLayout(new java.awt.BorderLayout());
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtTelCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtTelClienteActionPerformed(evt);
             }
         });
-        jPanel23.add(jTextField9, java.awt.BorderLayout.CENTER);
+        jPanel23.add(txtTelCliente, java.awt.BorderLayout.CENTER);
         jPanel23.add(jPanel24, java.awt.BorderLayout.PAGE_START);
         jPanel23.add(jPanel28, java.awt.BorderLayout.PAGE_END);
         jPanel23.add(jPanel29, java.awt.BorderLayout.LINE_START);
@@ -170,8 +241,8 @@ public class FrmCli extends javax.swing.JInternalFrame {
 
         jPanel26.setLayout(new java.awt.BorderLayout());
 
-        jTextField10.setEditable(false);
-        jPanel26.add(jTextField10, java.awt.BorderLayout.CENTER);
+        txtPagoCliente.setEditable(false);
+        jPanel26.add(txtPagoCliente, java.awt.BorderLayout.CENTER);
         jPanel26.add(jPanel31, java.awt.BorderLayout.PAGE_START);
         jPanel26.add(jPanel32, java.awt.BorderLayout.PAGE_END);
         jPanel26.add(jPanel33, java.awt.BorderLayout.LINE_START);
@@ -181,23 +252,23 @@ public class FrmCli extends javax.swing.JInternalFrame {
 
         jPanel27.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Agregar cliente...");
-        jPanel27.add(jButton1, new java.awt.GridBagConstraints());
+        btnAddCliente.setText("Agregar cliente...");
+        jPanel27.add(btnAddCliente, new java.awt.GridBagConstraints());
 
         jPanel1.add(jPanel27);
 
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setText("Cancelar");
-        jPanel2.add(jButton2, new java.awt.GridBagConstraints());
+        btnCancelCliente.setText("Cancelar");
+        jPanel2.add(btnCancelCliente, new java.awt.GridBagConstraints());
 
         jPanel1.add(jPanel2);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaCliente.setColumns(20);
+        txaCliente.setRows(5);
+        jScrollPane1.setViewportView(txaCliente);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -220,15 +291,15 @@ public class FrmCli extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtTelClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtTelClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton btnAddCliente;
+    private javax.swing.JButton btnCancelCliente;
+    private javax.swing.JComboBox<String> cbCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
@@ -269,10 +340,10 @@ public class FrmCli extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextArea txaCliente;
+    private javax.swing.JTextField txtIdCliente;
+    private javax.swing.JTextField txtNomCliente;
+    private javax.swing.JTextField txtPagoCliente;
+    private javax.swing.JTextField txtTelCliente;
     // End of variables declaration//GEN-END:variables
 }

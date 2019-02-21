@@ -9,19 +9,21 @@ package modelo;
  *
  * @author Oscar
  */
-public class Pintura extends Obra{
-    
-    public Pintura(String cod, String nom, long precio, Artista artista, int venta) {
+public class ObLapiz extends Obra{
+
+    public ObLapiz(String cod, String nom, long precio, Artista artista, int venta) {
         super(cod, nom, precio, artista, venta);
     }
 
-    public Pintura() {
-        super ();
+    public ObLapiz() {
+        super();
     }
 
     @Override
     public long impuesto() {
-        return (long) (this.precio * 0.045 );
+        return (long) (this.precio * 0.02);
     }
+    
+    
     
 }

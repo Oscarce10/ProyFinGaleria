@@ -78,8 +78,6 @@ public abstract class Obra {
         return "Codigo: " + cod + "\nNombre: " + nom + "\nPrecio: " + precio + artista.toString() + "\n";
     }
     
-    public long impuesto(){
-        return this.precio;
-    }
+    public abstract long impuesto();
     
 }

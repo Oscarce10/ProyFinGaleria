@@ -5,6 +5,8 @@
  */
 package javaapplication3;
 
+import control.Controlador;
+
 /**
  *
  * @author Oscar
@@ -15,7 +17,8 @@ public class JavaApplication3 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Controlador ob = new Controlador();
+        ob.iniciar();   
     }
     
 }

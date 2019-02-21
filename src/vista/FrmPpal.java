@@ -5,6 +5,9 @@
  */
 package vista;
 
+import javax.swing.JDesktopPane;
+import javax.swing.JMenuItem;
+
 /**
  *
  * @author Oscar
@@ -18,6 +21,88 @@ public class FrmPpal extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JDesktopPane getEscritorio() {
+        return escritorio;
+    }
+
+    public void setEscritorio(JDesktopPane escritorio) {
+        this.escritorio = escritorio;
+    }
+
+    public JMenuItem getMnuArtista() {
+        return mnuArtista;
+    }
+
+    public void setMnuArtista(JMenuItem mnuArtista) {
+        this.mnuArtista = mnuArtista;
+    }
+
+    public JMenuItem getMnuCliente() {
+        return mnuCliente;
+    }
+
+    public void setMnuCliente(JMenuItem mnuCliente) {
+        this.mnuCliente = mnuCliente;
+    }
+
+    public JMenuItem getMnuExit() {
+        return mnuExit;
+    }
+
+    public void setMnuExit(JMenuItem mnuExit) {
+        this.mnuExit = mnuExit;
+    }
+
+    public JMenuItem getMnuObra() {
+        return mnuObra;
+    }
+
+    public void setMnuObra(JMenuItem mnuObra) {
+        this.mnuObra = mnuObra;
+    }
+
+    public JMenuItem getMnuReporte() {
+        return mnuReporte;
+    }
+
+    public void setMnuReporte(JMenuItem mnuReporte) {
+        this.mnuReporte = mnuReporte;
+    }
+
+    public JMenuItem getMnuTabArtistas() {
+        return mnuTabArtistas;
+    }
+
+    public void setMnuTabArtistas(JMenuItem mnuTabArtistas) {
+        this.mnuTabArtistas = mnuTabArtistas;
+    }
+
+    public JMenuItem getMnuTabClientes() {
+        return mnuTabClientes;
+    }
+
+    public void setMnuTabClientes(JMenuItem mnuTabClientes) {
+        this.mnuTabClientes = mnuTabClientes;
+    }
+
+    public JMenuItem getMnuTabObras() {
+        return mnuTabObras;
+    }
+
+    public void setMnuTabObras(JMenuItem mnuTabObras) {
+        this.mnuTabObras = mnuTabObras;
+    }
+
+    public JMenuItem getMnuVenta() {
+        return mnuVenta;
+    }
+
+    public void setMnuVenta(JMenuItem mnuVenta) {
+        this.mnuVenta = mnuVenta;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,31 +113,32 @@ public class FrmPpal extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jMenu5 = new javax.swing.JMenu();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        mnuArtista = new javax.swing.JMenuItem();
+        mnuCliente = new javax.swing.JMenuItem();
+        mnuObra = new javax.swing.JMenuItem();
+        mnuVenta = new javax.swing.JMenuItem();
+        mnuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        mnuTabArtistas = new javax.swing.JMenuItem();
+        mnuTabClientes = new javax.swing.JMenuItem();
+        mnuTabObras = new javax.swing.JMenuItem();
+        mnuReporte = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
+        escritorio.setLayout(escritorioLayout);
+        escritorioLayout.setHorizontalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 458, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        escritorioLayout.setVerticalGroup(
+            escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 366, Short.MAX_VALUE)
         );
 
@@ -60,23 +146,27 @@ public class FrmPpal extends javax.swing.JInternalFrame {
 
         jMenu3.setText("Nuevo");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem1.setText("Artista");
-        jMenu3.add(jMenuItem1);
+        mnuArtista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        mnuArtista.setText("Artista");
+        jMenu3.add(mnuArtista);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Cliente");
-        jMenu3.add(jMenuItem2);
+        mnuCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        mnuCliente.setText("Cliente");
+        jMenu3.add(mnuCliente);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem3.setText("Obra");
-        jMenu3.add(jMenuItem3);
+        mnuObra.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        mnuObra.setText("Obra");
+        jMenu3.add(mnuObra);
 
         jMenu1.add(jMenu3);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
-        jMenuItem4.setText("Venta");
-        jMenu1.add(jMenuItem4);
+        mnuVenta.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_MASK));
+        mnuVenta.setText("Venta");
+        jMenu1.add(mnuVenta);
+
+        mnuExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        mnuExit.setText("Salir");
+        jMenu1.add(mnuExit);
 
         jMenuBar1.add(jMenu1);
 
@@ -84,23 +174,23 @@ public class FrmPpal extends javax.swing.JInternalFrame {
 
         jMenu4.setText("Tabla");
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
-        jMenuItem5.setText("Artistas");
-        jMenu4.add(jMenuItem5);
+        mnuTabArtistas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
+        mnuTabArtistas.setText("Artistas");
+        jMenu4.add(mnuTabArtistas);
 
-        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
-        jMenuItem6.setText("Clientes");
-        jMenu4.add(jMenuItem6);
+        mnuTabClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        mnuTabClientes.setText("Clientes");
+        jMenu4.add(mnuTabClientes);
 
-        jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK));
-        jMenuItem7.setText("Obras");
-        jMenu4.add(jMenuItem7);
+        mnuTabObras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK));
+        mnuTabObras.setText("Obras");
+        jMenu4.add(mnuTabObras);
 
         jMenu2.add(jMenu4);
 
-        jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem8.setText("Reporte de ventas");
-        jMenu2.add(jMenuItem8);
+        mnuReporte.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        mnuReporte.setText("Reporte de ventas");
+        jMenu2.add(mnuReporte);
 
         jMenuBar1.add(jMenu2);
 
@@ -110,11 +200,11 @@ public class FrmPpal extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(escritorio)
         );
 
         pack();
@@ -122,20 +212,21 @@ public class FrmPpal extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem mnuArtista;
+    private javax.swing.JMenuItem mnuCliente;
+    private javax.swing.JMenuItem mnuExit;
+    private javax.swing.JMenuItem mnuObra;
+    private javax.swing.JMenuItem mnuReporte;
+    private javax.swing.JMenuItem mnuTabArtistas;
+    private javax.swing.JMenuItem mnuTabClientes;
+    private javax.swing.JMenuItem mnuTabObras;
+    private javax.swing.JMenuItem mnuVenta;
     // End of variables declaration//GEN-END:variables
 }

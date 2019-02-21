@@ -26,7 +26,6 @@ public class FrmObra extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -34,14 +33,14 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbTipoObra = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbOpcVenta = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
+        txtCodObra = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
@@ -49,7 +48,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel20 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
+        txtNomObra = new javax.swing.JTextField();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
@@ -61,28 +60,28 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel28 = new javax.swing.JPanel();
         jPanel29 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cbArtistaObra = new javax.swing.JComboBox<>();
         jPanel25 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
-        jTextField10 = new javax.swing.JTextField();
+        txtPrecioObra = new javax.swing.JTextField();
         jPanel31 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnAddObra = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        btnCancelObra = new javax.swing.JButton();
         jPanel36 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaObra = new javax.swing.JTextArea();
         jPanel27 = new javax.swing.JPanel();
         jPanel37 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel40 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        btnAddArtObra = new javax.swing.JButton();
 
         jPanel1.setLayout(new java.awt.GridLayout(2, 2));
 
@@ -96,7 +95,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel4);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pintura", "Escultura", "Dibujo a lapiz" }));
+        cbTipoObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pintura", "Escultura", "Dibujo a lapiz" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -104,19 +103,19 @@ public class FrmObra extends javax.swing.JInternalFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(109, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbTipoObra, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbTipoObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel5);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        cbOpcVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -124,13 +123,13 @@ public class FrmObra extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbOpcVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbOpcVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
@@ -150,7 +149,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel2.add(jPanel18);
 
         jPanel19.setLayout(new java.awt.BorderLayout());
-        jPanel19.add(jTextField7, java.awt.BorderLayout.CENTER);
+        jPanel19.add(txtCodObra, java.awt.BorderLayout.CENTER);
         jPanel19.add(jPanel8, java.awt.BorderLayout.PAGE_START);
         jPanel19.add(jPanel9, java.awt.BorderLayout.PAGE_END);
         jPanel19.add(jPanel10, java.awt.BorderLayout.LINE_START);
@@ -167,7 +166,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel2.add(jPanel20);
 
         jPanel21.setLayout(new java.awt.BorderLayout());
-        jPanel21.add(jTextField8, java.awt.BorderLayout.CENTER);
+        jPanel21.add(txtNomObra, java.awt.BorderLayout.CENTER);
         jPanel21.add(jPanel12, java.awt.BorderLayout.PAGE_START);
         jPanel21.add(jPanel13, java.awt.BorderLayout.PAGE_END);
         jPanel21.add(jPanel14, java.awt.BorderLayout.LINE_START);
@@ -189,8 +188,8 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel23.add(jPanel29, java.awt.BorderLayout.LINE_START);
         jPanel23.add(jPanel30, java.awt.BorderLayout.LINE_END);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel23.add(jComboBox3, java.awt.BorderLayout.CENTER);
+        cbArtistaObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel23.add(cbArtistaObra, java.awt.BorderLayout.CENTER);
 
         jPanel2.add(jPanel23);
 
@@ -203,7 +202,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel2.add(jPanel25);
 
         jPanel26.setLayout(new java.awt.BorderLayout());
-        jPanel26.add(jTextField10, java.awt.BorderLayout.CENTER);
+        jPanel26.add(txtPrecioObra, java.awt.BorderLayout.CENTER);
         jPanel26.add(jPanel31, java.awt.BorderLayout.PAGE_START);
         jPanel26.add(jPanel32, java.awt.BorderLayout.PAGE_END);
         jPanel26.add(jPanel33, java.awt.BorderLayout.LINE_START);
@@ -213,15 +212,15 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel16.setLayout(new java.awt.GridBagLayout());
 
-        jButton1.setText("Agregar obra...");
-        jPanel16.add(jButton1, new java.awt.GridBagConstraints());
+        btnAddObra.setText("Agregar obra...");
+        jPanel16.add(btnAddObra, new java.awt.GridBagConstraints());
 
         jPanel2.add(jPanel16);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setText("Cancelar");
-        jPanel7.add(jButton2, new java.awt.GridBagConstraints());
+        btnCancelObra.setText("Cancelar");
+        jPanel7.add(btnCancelObra, new java.awt.GridBagConstraints());
 
         jPanel2.add(jPanel7);
 
@@ -229,9 +228,9 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel36.setLayout(new java.awt.BorderLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaObra.setColumns(20);
+        txaObra.setRows(5);
+        jScrollPane1.setViewportView(txaObra);
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -262,13 +261,13 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel40.setLayout(new java.awt.GridBagLayout());
 
-        jButton3.setText("Agregar artista...");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnAddArtObra.setText("Agregar artista...");
+        btnAddArtObra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnAddArtObraActionPerformed(evt);
             }
         });
-        jPanel40.add(jButton3, new java.awt.GridBagConstraints());
+        jPanel40.add(btnAddArtObra, new java.awt.GridBagConstraints());
 
         jPanel27.add(jPanel40);
 
@@ -279,18 +278,18 @@ public class FrmObra extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnAddArtObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddArtObraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnAddArtObraActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton btnAddArtObra;
+    private javax.swing.JButton btnAddObra;
+    private javax.swing.JButton btnCancelObra;
+    private javax.swing.JComboBox<String> cbArtistaObra;
+    private javax.swing.JComboBox<String> cbOpcVenta;
+    private javax.swing.JComboBox<String> cbTipoObra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -336,9 +335,9 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextArea txaObra;
+    private javax.swing.JTextField txtCodObra;
+    private javax.swing.JTextField txtNomObra;
+    private javax.swing.JTextField txtPrecioObra;
     // End of variables declaration//GEN-END:variables
 }
