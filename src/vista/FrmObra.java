@@ -7,6 +7,7 @@ package vista;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -102,6 +103,23 @@ public class FrmObra extends javax.swing.JInternalFrame {
     public void setTxtPrecioObra(JTextField txtPrecioObra) {
         this.txtPrecioObra = txtPrecioObra;
     }
+
+    public JPanel getLblPrecio() {
+        return lblPrecio;
+    }
+
+    public void setLblPrecio(JPanel lblPrecio) {
+        this.lblPrecio = lblPrecio;
+    }
+    
+    //para esconder o visibilizar el textfield de precio de obra
+    public JPanel getPnlPrecio() {
+        return pnlPrecio;
+    }
+    //para esconder o visibilizar el label de precio de obra
+    public void setPnlPrecio(JPanel pnlPrecio) {
+        this.pnlPrecio = pnlPrecio;
+    }
     
     
 
@@ -139,14 +157,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel29 = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         cbArtistaObra = new javax.swing.JComboBox<>();
-        jPanel25 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
         jPanel26 = new javax.swing.JPanel();
-        txtPrecioObra = new javax.swing.JTextField();
-        jPanel31 = new javax.swing.JPanel();
-        jPanel32 = new javax.swing.JPanel();
-        jPanel33 = new javax.swing.JPanel();
-        jPanel34 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -155,9 +166,17 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel38 = new javax.swing.JPanel();
         cbOpcVentaObra = new javax.swing.JComboBox<>();
-        jPanel39 = new javax.swing.JPanel();
+        lblPrecio = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        pnlPrecio = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jPanel42 = new javax.swing.JPanel();
+        txtPrecioObra = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         btnAddObra = new javax.swing.JButton();
-        jPanel41 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         btnCancelObra = new javax.swing.JButton();
         jPanel36 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
@@ -224,22 +243,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel2.add(jPanel23);
 
-        jPanel25.setLayout(new java.awt.GridBagLayout());
-
-        jLabel10.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel10.setText("Precio: ");
-        jPanel25.add(jLabel10, new java.awt.GridBagConstraints());
-
-        jPanel2.add(jPanel25);
-
         jPanel26.setLayout(new java.awt.BorderLayout());
-        jPanel26.add(txtPrecioObra, java.awt.BorderLayout.CENTER);
-        jPanel26.add(jPanel31, java.awt.BorderLayout.PAGE_START);
-        jPanel26.add(jPanel32, java.awt.BorderLayout.PAGE_END);
-        jPanel26.add(jPanel33, java.awt.BorderLayout.LINE_START);
-        jPanel26.add(jPanel34, java.awt.BorderLayout.LINE_END);
-
-        jPanel2.add(jPanel26);
 
         jPanel16.setLayout(new java.awt.GridBagLayout());
 
@@ -247,7 +251,9 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jLabel4.setText("Tipo de obra");
         jPanel16.add(jLabel4, new java.awt.GridBagConstraints());
 
-        jPanel2.add(jPanel16);
+        jPanel26.add(jPanel16, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(jPanel26);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
@@ -273,19 +279,36 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel2.add(jPanel38);
 
-        jPanel39.setLayout(new java.awt.GridBagLayout());
+        lblPrecio.setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jLabel2.setText("Precio");
+        lblPrecio.add(jLabel2, new java.awt.GridBagConstraints());
+
+        jPanel2.add(lblPrecio);
+
+        pnlPrecio.setLayout(new java.awt.BorderLayout());
+        pnlPrecio.add(jPanel4, java.awt.BorderLayout.LINE_START);
+        pnlPrecio.add(jPanel5, java.awt.BorderLayout.LINE_END);
+        pnlPrecio.add(jPanel6, java.awt.BorderLayout.PAGE_START);
+        pnlPrecio.add(jPanel42, java.awt.BorderLayout.PAGE_END);
+        pnlPrecio.add(txtPrecioObra, java.awt.BorderLayout.CENTER);
+
+        jPanel2.add(pnlPrecio);
+
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         btnAddObra.setText("Agregar obra...");
-        jPanel39.add(btnAddObra, new java.awt.GridBagConstraints());
+        jPanel1.add(btnAddObra, new java.awt.GridBagConstraints());
 
-        jPanel2.add(jPanel39);
+        jPanel2.add(jPanel1);
 
-        jPanel41.setLayout(new java.awt.GridBagLayout());
+        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         btnCancelObra.setText("Cancelar");
-        jPanel41.add(btnCancelObra, new java.awt.GridBagConstraints());
+        jPanel3.add(btnCancelObra, new java.awt.GridBagConstraints());
 
-        jPanel2.add(jPanel41);
+        jPanel2.add(jPanel3);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -354,12 +377,13 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbOpcVentaObra;
     private javax.swing.JComboBox<String> cbTipoObra;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -376,27 +400,27 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
-    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
-    private javax.swing.JPanel jPanel31;
-    private javax.swing.JPanel jPanel32;
-    private javax.swing.JPanel jPanel33;
-    private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
-    private javax.swing.JPanel jPanel39;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel41;
+    private javax.swing.JPanel jPanel42;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel lblPrecio;
+    private javax.swing.JPanel pnlPrecio;
     private javax.swing.JTextArea txaObra;
     private javax.swing.JTextField txtCodObra;
     private javax.swing.JTextField txtNomObra;

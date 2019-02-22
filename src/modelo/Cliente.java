@@ -23,6 +23,16 @@ public class Cliente extends Persona{
         pago = 0;
     }
 
+    public int getPago() {
+        return pago;
+    }
+
+    public void setPago(int pago) {
+        this.pago = pago;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Cliente\n" + super.toString() + "Valor entrada: "+ pago + "\n";

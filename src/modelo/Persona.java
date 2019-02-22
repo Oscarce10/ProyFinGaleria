@@ -30,8 +30,21 @@ public abstract class Persona {
     public String getId() {
         return id;
     }
+    
+    /*CampoVacioException() --> Verifica que no hayan campos sin llenar
+      RangoValorException() --> Verifica que no hayan caracteres especiales o numeros (0), o que solo existan numeros y sin espacios(2)
+      En todos se envia el nombre del campo para que la excepcion indique donde esta el error
+     */
 
-    public void setId(String id) {
+    public void setId(String id) throws CampoVacioException, RangoValorException{
+        if (id.length()==0){
+            throw new CampoVacioException("Identificacion");
+        }
+        for (int i = 0; i < id.length(); i++) {
+                if (id.charAt(i) == ' ' || id.charAt(i) <=48 ||  id.charAt(i)>58) {
+                        throw new RangoValorException(1, "Identificacion");
+                    }
+                }
         this.id = id;
     }
 
@@ -39,7 +52,17 @@ public abstract class Persona {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(String nom) throws CampoVacioException, RangoValorException{
+        if (nom.length()==0){
+            throw new CampoVacioException("Nombre");
+        }
+        for (int i = 0; i < nom.length(); i++) {
+                if (nom.charAt(i) != ' ') {
+                    if (nom.charAt(i) < 65 || nom.charAt(i) >= 91 && nom.charAt(i) <= 96 || nom.charAt(i) > 122 && nom.charAt(i) != 'ñ') {
+                        throw new RangoValorException(0, "Nombre");
+                    }
+                }
+            }
         this.nom = nom;
     }
 
@@ -47,7 +70,15 @@ public abstract class Persona {
         return tel;
     }
 
-    public void setTel(String tel) {
+    public void setTel(String tel) throws CampoVacioException, RangoValorException{
+        if (tel.length()==0){
+            throw new CampoVacioException("Telefono");
+        }
+        for (int i = 0; i < tel.length(); i++) {
+                if (tel.charAt(i) == ' ' || tel.charAt(i) <=48 ||  tel.charAt(i)>58) {
+                        throw new RangoValorException(1, "Telefono");
+                    }
+                }
         this.tel = tel;
     }
 

@@ -15,14 +15,12 @@ public abstract class Obra {
     protected String nom;
     protected long precio;
     private Artista artista;
-    private int venta;
 
-    public Obra(String cod, String nom, long precio, Artista artista, int venta) {
+    public Obra(String cod, String nom, long precio, Artista artista) {
         this.cod = cod;
         this.nom = nom;
         this.precio = precio;
         this.artista = artista;
-        this.venta = venta;
     }
 
     public Obra() {
@@ -30,7 +28,6 @@ public abstract class Obra {
         this.nom = "";
         this.precio = 0;
         this.artista = new Artista();
-        this.venta = 0;
     }
 
     public String getCod() {
@@ -48,7 +45,8 @@ public abstract class Obra {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
+    
+    //Si el precio de la obra es 0 es porque no esta a la venta
     public long getPrecio() {
         return precio;
     }
@@ -63,14 +61,6 @@ public abstract class Obra {
 
     public void setArtista(Artista artista) {
         this.artista = artista;
-    }
-
-    public int getVenta() {
-        return venta;
-    }
-
-    public void setVenta(int venta) {
-        this.venta = venta;
     }
 
     @Override
