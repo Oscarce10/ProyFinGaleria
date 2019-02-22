@@ -147,9 +147,6 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txaCliente = new javax.swing.JTextArea();
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setTitle("Registro: Cliente");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -169,6 +166,7 @@ public class FrmCli extends javax.swing.JInternalFrame {
         jPanel17.add(jPanel6, java.awt.BorderLayout.LINE_START);
 
         cbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adulto", "Niño" }));
+        cbCliente.setSelectedIndex(-1);
         jPanel17.add(cbCliente, java.awt.BorderLayout.CENTER);
         jPanel17.add(jPanel7, java.awt.BorderLayout.LINE_END);
 
@@ -276,7 +274,7 @@ public class FrmCli extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(

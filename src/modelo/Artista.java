@@ -14,10 +14,10 @@ public class Artista extends Persona{
     private String dir;
     private String ciu;
 
-    public Artista(String dir, String ciu, String id, String nom, String tel) {
-        super(id, nom, tel);
-        this.dir = dir;
-        this.ciu = ciu;
+    public Artista(String dir, String ciu, String id, String nom, String tel){
+            super(id, nom, tel);
+            this.dir = dir;
+            this.ciu = ciu;
     }
 
     public Artista() {

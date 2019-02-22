@@ -5,6 +5,11 @@
  */
 package vista;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Oscar
@@ -18,6 +23,88 @@ public class FrmObra extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public JButton getBtnAddArtObra() {
+        return btnAddArtObra;
+    }
+
+    public void setBtnAddArtObra(JButton btnAddArtObra) {
+        this.btnAddArtObra = btnAddArtObra;
+    }
+
+    public JButton getBtnAddObra() {
+        return btnAddObra;
+    }
+
+    public void setBtnAddObra(JButton btnAddObra) {
+        this.btnAddObra = btnAddObra;
+    }
+
+    public JButton getBtnCancelObra() {
+        return btnCancelObra;
+    }
+
+    public void setBtnCancelObra(JButton btnCancelObra) {
+        this.btnCancelObra = btnCancelObra;
+    }
+
+    public JComboBox<String> getCbArtistaObra() {
+        return cbArtistaObra;
+    }
+
+    public void setCbArtistaObra(JComboBox<String> cbArtistaObra) {
+        this.cbArtistaObra = cbArtistaObra;
+    }
+
+    public JComboBox<String> getCbOpcVentaObra() {
+        return cbOpcVentaObra;
+    }
+
+    public void setCbOpcVentaObra(JComboBox<String> cbOpcVentaObra) {
+        this.cbOpcVentaObra = cbOpcVentaObra;
+    }
+
+    public JComboBox<String> getCbTipoObra() {
+        return cbTipoObra;
+    }
+
+    public void setCbTipoObra(JComboBox<String> cbTipoObra) {
+        this.cbTipoObra = cbTipoObra;
+    }
+
+    public JTextArea getTxaObra() {
+        return txaObra;
+    }
+
+    public void setTxaObra(JTextArea txaObra) {
+        this.txaObra = txaObra;
+    }
+
+    public JTextField getTxtCodObra() {
+        return txtCodObra;
+    }
+
+    public void setTxtCodObra(JTextField txtCodObra) {
+        this.txtCodObra = txtCodObra;
+    }
+
+    public JTextField getTxtNomObra() {
+        return txtNomObra;
+    }
+
+    public void setTxtNomObra(JTextField txtNomObra) {
+        this.txtNomObra = txtNomObra;
+    }
+
+    public JTextField getTxtPrecioObra() {
+        return txtPrecioObra;
+    }
+
+    public void setTxtPrecioObra(JTextField txtPrecioObra) {
+        this.txtPrecioObra = txtPrecioObra;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,15 +114,6 @@ public class FrmObra extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        cbTipoObra = new javax.swing.JComboBox<>();
-        jPanel6 = new javax.swing.JPanel();
-        cbOpcVenta = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -70,8 +148,16 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel33 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
-        btnAddObra = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
+        cbTipoObra = new javax.swing.JComboBox<>();
+        jPanel35 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel38 = new javax.swing.JPanel();
+        cbOpcVentaObra = new javax.swing.JComboBox<>();
+        jPanel39 = new javax.swing.JPanel();
+        btnAddObra = new javax.swing.JButton();
+        jPanel41 = new javax.swing.JPanel();
         btnCancelObra = new javax.swing.JButton();
         jPanel36 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
@@ -83,66 +169,12 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel40 = new javax.swing.JPanel();
         btnAddArtObra = new javax.swing.JButton();
 
-        jPanel1.setLayout(new java.awt.GridLayout(2, 2));
-
-        jLabel1.setText("Tipo de obra");
-        jPanel3.add(jLabel1);
-
-        jPanel1.add(jPanel3);
-
-        jLabel2.setText("Esta a la venta?");
-        jPanel4.add(jLabel2);
-
-        jPanel1.add(jPanel4);
-
-        cbTipoObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pintura", "Escultura", "Dibujo a lapiz" }));
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
-                .addComponent(cbTipoObra, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(cbTipoObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel5);
-
-        cbOpcVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(116, Short.MAX_VALUE)
-                .addComponent(cbOpcVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(cbOpcVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel6);
-
-        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_START);
-
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel2.setLayout(new java.awt.GridLayout(5, 2));
+        jPanel2.setLayout(new java.awt.GridLayout(7, 2));
 
         jPanel18.setLayout(new java.awt.GridBagLayout());
 
-        jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel7.setText("Codigo:");
         jPanel18.add(jLabel7, new java.awt.GridBagConstraints());
 
@@ -159,7 +191,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel20.setLayout(new java.awt.GridBagLayout());
 
-        jLabel8.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel8.setText("Nombre: ");
         jPanel20.add(jLabel8, new java.awt.GridBagConstraints());
 
@@ -176,7 +208,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel22.setLayout(new java.awt.GridBagLayout());
 
-        jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel9.setText("Artista:");
         jPanel22.add(jLabel9, new java.awt.GridBagConstraints());
 
@@ -188,14 +220,13 @@ public class FrmObra extends javax.swing.JInternalFrame {
         jPanel23.add(jPanel29, java.awt.BorderLayout.LINE_START);
         jPanel23.add(jPanel30, java.awt.BorderLayout.LINE_END);
 
-        cbArtistaObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel23.add(cbArtistaObra, java.awt.BorderLayout.CENTER);
 
         jPanel2.add(jPanel23);
 
         jPanel25.setLayout(new java.awt.GridBagLayout());
 
-        jLabel10.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel10.setText("Precio: ");
         jPanel25.add(jLabel10, new java.awt.GridBagConstraints());
 
@@ -212,17 +243,49 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel16.setLayout(new java.awt.GridBagLayout());
 
-        btnAddObra.setText("Agregar obra...");
-        jPanel16.add(btnAddObra, new java.awt.GridBagConstraints());
+        jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jLabel4.setText("Tipo de obra");
+        jPanel16.add(jLabel4, new java.awt.GridBagConstraints());
 
         jPanel2.add(jPanel16);
 
         jPanel7.setLayout(new java.awt.GridBagLayout());
 
-        btnCancelObra.setText("Cancelar");
-        jPanel7.add(btnCancelObra, new java.awt.GridBagConstraints());
+        cbTipoObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pintura", "Escultura", "Dibujo a lapiz" }));
+        cbTipoObra.setSelectedIndex(-1);
+        jPanel7.add(cbTipoObra, new java.awt.GridBagConstraints());
 
         jPanel2.add(jPanel7);
+
+        jPanel35.setLayout(new java.awt.GridBagLayout());
+
+        jLabel1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jLabel1.setText("Esta a la venta");
+        jPanel35.add(jLabel1, new java.awt.GridBagConstraints());
+
+        jPanel2.add(jPanel35);
+
+        jPanel38.setLayout(new java.awt.GridBagLayout());
+
+        cbOpcVentaObra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Si", "No" }));
+        cbOpcVentaObra.setSelectedIndex(-1);
+        jPanel38.add(cbOpcVentaObra, new java.awt.GridBagConstraints());
+
+        jPanel2.add(jPanel38);
+
+        jPanel39.setLayout(new java.awt.GridBagLayout());
+
+        btnAddObra.setText("Agregar obra...");
+        jPanel39.add(btnAddObra, new java.awt.GridBagConstraints());
+
+        jPanel2.add(jPanel39);
+
+        jPanel41.setLayout(new java.awt.GridBagLayout());
+
+        btnCancelObra.setText("Cancelar");
+        jPanel41.add(btnCancelObra, new java.awt.GridBagConstraints());
+
+        jPanel2.add(jPanel41);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -238,7 +301,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -288,16 +351,15 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAddObra;
     private javax.swing.JButton btnCancelObra;
     private javax.swing.JComboBox<String> cbArtistaObra;
-    private javax.swing.JComboBox<String> cbOpcVenta;
+    private javax.swing.JComboBox<String> cbOpcVentaObra;
     private javax.swing.JComboBox<String> cbTipoObra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -319,18 +381,18 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
+    private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel38;
+    private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel40;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

@@ -12,7 +12,7 @@ import javax.swing.JMenuItem;
  *
  * @author Oscar
  */
-public class FrmPpal extends javax.swing.JInternalFrame {
+public class FrmPpal extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmPpal
@@ -20,88 +20,6 @@ public class FrmPpal extends javax.swing.JInternalFrame {
     public FrmPpal() {
         initComponents();
     }
-
-    public JDesktopPane getEscritorio() {
-        return escritorio;
-    }
-
-    public void setEscritorio(JDesktopPane escritorio) {
-        this.escritorio = escritorio;
-    }
-
-    public JMenuItem getMnuArtista() {
-        return mnuArtista;
-    }
-
-    public void setMnuArtista(JMenuItem mnuArtista) {
-        this.mnuArtista = mnuArtista;
-    }
-
-    public JMenuItem getMnuCliente() {
-        return mnuCliente;
-    }
-
-    public void setMnuCliente(JMenuItem mnuCliente) {
-        this.mnuCliente = mnuCliente;
-    }
-
-    public JMenuItem getMnuExit() {
-        return mnuExit;
-    }
-
-    public void setMnuExit(JMenuItem mnuExit) {
-        this.mnuExit = mnuExit;
-    }
-
-    public JMenuItem getMnuObra() {
-        return mnuObra;
-    }
-
-    public void setMnuObra(JMenuItem mnuObra) {
-        this.mnuObra = mnuObra;
-    }
-
-    public JMenuItem getMnuReporte() {
-        return mnuReporte;
-    }
-
-    public void setMnuReporte(JMenuItem mnuReporte) {
-        this.mnuReporte = mnuReporte;
-    }
-
-    public JMenuItem getMnuTabArtistas() {
-        return mnuTabArtistas;
-    }
-
-    public void setMnuTabArtistas(JMenuItem mnuTabArtistas) {
-        this.mnuTabArtistas = mnuTabArtistas;
-    }
-
-    public JMenuItem getMnuTabClientes() {
-        return mnuTabClientes;
-    }
-
-    public void setMnuTabClientes(JMenuItem mnuTabClientes) {
-        this.mnuTabClientes = mnuTabClientes;
-    }
-
-    public JMenuItem getMnuTabObras() {
-        return mnuTabObras;
-    }
-
-    public void setMnuTabObras(JMenuItem mnuTabObras) {
-        this.mnuTabObras = mnuTabObras;
-    }
-
-    public JMenuItem getMnuVenta() {
-        return mnuVenta;
-    }
-
-    public void setMnuVenta(JMenuItem mnuVenta) {
-        this.mnuVenta = mnuVenta;
-    }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,6 +48,8 @@ public class FrmPpal extends javax.swing.JInternalFrame {
         mnuReporte = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
+
+        escritorio.setBackground(new java.awt.Color(255, 255, 102));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -229,4 +149,47 @@ public class FrmPpal extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem mnuTabObras;
     private javax.swing.JMenuItem mnuVenta;
     // End of variables declaration//GEN-END:variables
+
+    public JDesktopPane getEscritorio() {
+        return escritorio;
+    }
+
+    public JMenuItem getMnuArtista() {
+        return mnuArtista;
+    }
+
+    public JMenuItem getMnuCliente() {
+        return mnuCliente;
+    }
+
+    public JMenuItem getMnuExit() {
+        return mnuExit;
+    }
+
+    public JMenuItem getMnuObra() {
+        return mnuObra;
+    }
+
+    public JMenuItem getMnuReporte() {
+        return mnuReporte;
+    }
+
+    public JMenuItem getMnuTabArtistas() {
+        return mnuTabArtistas;
+    }
+
+    public JMenuItem getMnuTabClientes() {
+        return mnuTabClientes;
+    }
+
+    public JMenuItem getMnuTabObras() {
+        return mnuTabObras;
+    }
+
+    public JMenuItem getMnuVenta() {
+        return mnuVenta;
+    }
+
+
+
 }
