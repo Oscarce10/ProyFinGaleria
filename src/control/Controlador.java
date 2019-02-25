@@ -404,7 +404,6 @@ public class Controlador implements ActionListener {
                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
                                    }
                                }
-                               frmV.getCbNombreVenta().setSelectedIndex(-1);
                                break;
                               
                            case 1:
@@ -414,7 +413,6 @@ public class Controlador implements ActionListener {
                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
                                    }
                                }
-                               frmV.getCbNombreVenta().setSelectedIndex(-1);
                                break;
                                
                            case 2:
@@ -424,7 +422,6 @@ public class Controlador implements ActionListener {
                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
                                    }
                                }
-                               frmV.getCbNombreVenta().setSelectedIndex(-1);
                                break;
                        }
                     }
@@ -439,7 +436,7 @@ public class Controlador implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int i = 0; i<obL.getObO().size(); i++){
-                            if(obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem() && frmV.getCbNombreVenta().getSelectedIndex() != -1){
+                            if(obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()){
                                frmV.getTxtPrecioVenta().setText(""+obL.getObO().get(i).getPrecio());
                                frmV.getTxtImpVenta().setText(""+obL.getObO().get(i).impuesto());
                                frmV.getTxtTotalVenta().setText(""+(obL.getObO().get(i).getPrecio() + obL.getObO().get(i).impuesto()));
