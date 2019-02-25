@@ -28,6 +28,10 @@ public class RangoValorException extends Exception {
                 break;
             case 1:
                 msj = "Solo se permiten caracteres numericos y sin espacios en el campo ";
+                break;
+                
+            case 2:
+                msj = "Solo se permiten valores numericos en el campo ";
         }
         return msj + campo;
     }

@@ -47,11 +47,14 @@ public abstract class Obra {
     }
     
     //Si el precio de la obra es 0 es porque no esta a la venta
-    public long getPrecio() {
+    public long getPrecio() {    
         return precio;
     }
 
-    public void setPrecio(long precio) {
+    public void setPrecio(long precio) throws RangoValorException{
+        if(precio == -1){
+            throw new RangoValorException(2, "Precio");
+        }
         this.precio = precio;
     }
 
@@ -65,7 +68,10 @@ public abstract class Obra {
 
     @Override
     public String toString() {
-        return "Codigo: " + cod + "\nNombre: " + nom + "\nPrecio: " + precio + artista.toString() + "\n";
+        if(precio != 0){
+        return "Codigo: " + cod + "\nNombre: " + nom + "\nPrecio: " + precio + "\n\n\nDatos de " + artista.toString() + "\n";
+        }
+        else  return "Codigo: " + cod + "\nNombre: " + nom + "\nPrecio: " + "No esta a la venta" + "\n\n\nDatos de " + artista.toString() + "\n";
     }
     
     public abstract long impuesto();

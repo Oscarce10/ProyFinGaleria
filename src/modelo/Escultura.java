@@ -11,8 +11,8 @@ package modelo;
  */
 public class Escultura extends Obra{
 
-    public Escultura(String cod, String nom, long precio, Artista artista, int venta) {
-        super(cod, nom, precio, artista, venta);
+    public Escultura(String cod, String nom, long precio, Artista artista) {
+        super(cod, nom, precio, artista);
     }
 
     public Escultura() {

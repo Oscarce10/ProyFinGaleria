@@ -11,14 +11,14 @@ package modelo;
  */
 public class Pintura extends Obra{
     
-    public Pintura(String cod, String nom, long precio, Artista artista, int venta) {
-        super(cod, nom, precio, artista, venta);
+    public Pintura(String cod, String nom, long precio, Artista artista) {
+        super(cod, nom, precio, artista);
     }
 
     public Pintura() {
         super ();
     }
-
+    
     @Override
     public long impuesto() {
         return (long) (this.precio * 0.045 );

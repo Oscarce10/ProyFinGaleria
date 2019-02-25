@@ -11,8 +11,8 @@ package modelo;
  */
 public class ObLapiz extends Obra{
 
-    public ObLapiz(String cod, String nom, long precio, Artista artista, int venta) {
-        super(cod, nom, precio, artista, venta);
+    public ObLapiz(String cod, String nom, long precio, Artista artista) {
+        super(cod, nom, precio, artista);
     }
 
     public ObLapiz() {
