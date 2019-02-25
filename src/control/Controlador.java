@@ -436,6 +436,25 @@ public class Controlador implements ActionListener {
                         }
                     }
                 });
+                
+                frmV.getCbNombreVenta().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int i = 0; i<obL.getObO().size(); i++){
+                            if(obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()){
+                               frmV.getTxtPrecioVenta().setText(""+obL.getObO().get(i).getPrecio());
+                               frmV.getTxtImpVenta().setText(""+obL.getObO().get(i).impuesto());
+                               frmV.getTxtTotalVenta().setText(""+(obL.getObO().get(i).getPrecio() + obL.getObO().get(i).impuesto()));
+                            }
+                        }
+                    }
+                });
+                frmV.getBtnCancelVenta().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frmV.dispose();
+                    }
+                });
             }
             ///BORRARR//
             else if (e.getSource() == frmP.getMnuReporte()){
