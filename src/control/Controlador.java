@@ -439,7 +439,7 @@ public class Controlador implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int i = 0; i<obL.getObO().size(); i++){
-                            if(obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()){
+                            if(obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem() && frmV.getCbNombreVenta().getSelectedIndex() != -1){
                                frmV.getTxtPrecioVenta().setText(""+obL.getObO().get(i).getPrecio());
                                frmV.getTxtImpVenta().setText(""+obL.getObO().get(i).impuesto());
                                frmV.getTxtTotalVenta().setText(""+(obL.getObO().get(i).getPrecio() + obL.getObO().get(i).impuesto()));

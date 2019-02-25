@@ -41,7 +41,7 @@ public abstract class Persona {
             throw new CampoVacioException("Identificacion");
         }
         for (int i = 0; i < id.length(); i++) {
-                if (id.charAt(i) == ' ' || id.charAt(i) <=48 ||  id.charAt(i)>58) {
+                if (id.charAt(i) == ' ' || id.charAt(i) <48 ||  id.charAt(i)>=58) {
                         throw new RangoValorException(1, "Identificacion");
                     }
                 }
