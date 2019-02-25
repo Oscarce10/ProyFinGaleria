@@ -34,7 +34,10 @@ public abstract class Obra {
         return cod;
     }
 
-    public void setCod(String cod) {
+    public void setCod(String cod) throws CampoVacioException{
+        if (cod.length() == 0){
+            throw new CampoVacioException("Codigo");
+        }
         this.cod = cod;
     }
 
@@ -42,7 +45,10 @@ public abstract class Obra {
         return nom;
     }
 
-    public void setNom(String nom) {
+    public void setNom(String nom) throws CampoVacioException {
+        if (nom.length() == 0){
+            throw new CampoVacioException("Nombre");
+        }
         this.nom = nom;
     }
     

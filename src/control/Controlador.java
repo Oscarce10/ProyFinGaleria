@@ -93,14 +93,16 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            //Si es celeccionado archivo --> salir se termina el programa
+            //Si es seleccionado archivo --> salir se termina el programa
             if (e.getSource() == frmP.getMnuExit()) {
                 System.exit(0);
             } /*Cuando se selecciona nuevo-->artista se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ else if (e.getSource() == frmP.getMnuArtista()) {
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ 
+            else if (e.getSource() == frmP.getMnuArtista()) {
                 agregarArtista();
             } /*Cuando se selecciona nuevo-->cliente se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ else if (e.getSource() == frmP.getMnuCliente()) {
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ 
+            else if (e.getSource() == frmP.getMnuCliente()) {
                 frmC = new FrmCli();
                 frmP.getEscritorio().add(frmC);
                 frmC.setMaximum(true); //Permite iniciar el formulario maximizado dentro del Jdesktop
@@ -143,7 +145,7 @@ public class Controlador implements ActionListener {
                                 //Se pide confirmacion para crear al cliente, en caso afirmativo se agrega a la lista de Persona y se avisa
                                 if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obC.toString(), "Agregar cliente", JOptionPane.YES_NO_OPTION)
                                         == JOptionPane.YES_OPTION) {
-                                    obL.getObP().add(obC);
+                                    obL.getObC().add(obC);
                                     JOptionPane.showMessageDialog(frmP, "Cliente agregado satisfactoriamente");
                                     //Se pregunta si desean agregar un nuevo cliente, en caso afirmativo se limpian los campos del FrmC
                                     if (JOptionPane.showConfirmDialog(frmP, "Desea agregar otro cliente?", "Agregar nuevo cliente", JOptionPane.YES_NO_OPTION)
@@ -181,14 +183,11 @@ public class Controlador implements ActionListener {
                 frmO = new FrmObra();
                 /*Como se observa el cb de artista solo se llenara a medida que estan los artistas registrados, en tal caso que se
                 desee añadir una obra y el artista no este, se podra añadir un artista nuevo y posteriormente su obra.
-                Para llenar el combo box se hace un recorrido a la lista de tipo Persona desde 0 hasta el valor menor a su tamaño y solo se
-                toman los datos de los objetos registrados solo como Artista (instance of Artista) y si se encuentra alguno, se toma su nombre
-                y se inserta en el cb
+                Para llenar el combo box se hace un recorrido a la lista de tipo Artista y solo se toman los datos de los objetos 
+                registrados solo como Artista y si se encuentra alguno, se toma su nombre y se inserta en el cb
                  */
-                for (int i = 0; i < obL.getObP().size(); i++) {
-                    if (obL.getObP().get(i) instanceof Artista) {
-                        frmO.getCbArtistaObra().addItem(obL.getObP().get(i).getNom());
-                    }
+                for (int i = 0; i < obL.getObA().size(); i++) {
+                        frmO.getCbArtistaObra().addItem(obL.getObA().get(i).getNom());
                 }
                 frmO.getCbArtistaObra().setSelectedIndex(-1); //Deja el combobox en seleccion nula por defecto
                 frmP.getEscritorio().add(frmO);
@@ -218,12 +217,11 @@ public class Controlador implements ActionListener {
                 frmO.getBtnAddArtObra().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        frmP.setSize(500, 500);
-                        frmO.dispose();
                         try {
-                            agregarArtista();
+                            frmP.setSize(500, 500);
+                            frmO.dispose();
+                            agregarArtista();  //Agregar artista puede lanzar excepcion ya que la ventana se maximiza
                         } catch (PropertyVetoException ex) {
-                            //Puesto automaticamente por Netbeans, no creo que se lance nunca pero debe estar ahi
                             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
@@ -244,6 +242,7 @@ public class Controlador implements ActionListener {
                 frmO.getBtnAddObra().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        long precio = 0;
                         /*Si hay combobox sin llenar se lanza advertencia y no se deja continuar, en el caso de venta
                         Si la opcion
                          */
@@ -254,44 +253,47 @@ public class Controlador implements ActionListener {
                         } else if (frmO.getCbTipoObra().getSelectedIndex() == -1) {
                             JOptionPane.showMessageDialog(frmP, "El campo de Tipo obra no esta seleccionado");
                         } else {
-                            /*
+                            try {
+                                /*
                                 Debido a que toda obra pertenece a un artista, hay una relacion de composicion entre Obra y artista
                                 para establecer el artista de la obra primero creamos un objeto vacio de tipo artista, luego escogemos el 
-                                nombre artista seleccionado en el combobox de artista con el nombre empezamos a reccorrer la lista de Personas 
-                                ubicando solo las que son de tipo Artista (instance of artista) y esta sera ubicada cuando su nombre coincida con
-                                el nombre que se tiene en el combobox y cuando sea ubicado el artista de la lista sera copiado y sera
-                                pegado en el objeto de tipo artista que habiamos creado vacio.
-                                Por ultimo el objeto nuevo, ahora con la informacion del artista seleccionado en el combobox sera añadido a pintura.Artista
-                             */
-                            Artista ob = new Artista();
-                            for (int i = 0; i < obL.getObP().size(); i++) {
-                                if (obL.getObP().get(i) instanceof Artista) {
-                                    if (frmO.getCbArtistaObra().getSelectedItem() == obL.getObP().get(i).getNom()) {
-                                        ob = (Artista) obL.getObP().get(i);
+                                nombre artista seleccionado en el combobox de artista con el nombre empezamos a reccorrer la lista de Artista 
+                                cuando el nombre del artista en la lista coincida con el nombre que se tiene en el combobox sera copiado 
+                                y sera pegado en el objeto de tipo artista que habiamos creado vacio.
+                                Por ultimo el objeto nuevo, ahora con la informacion del artista seleccionado en el combobox sera añadido a tipoObra.Artista
+                                 */
+                                Artista ob = new Artista();
+                                for (int i = 0; i < obL.getObA().size(); i++) {
+                                        if (frmO.getCbArtistaObra().getSelectedItem() == obL.getObA().get(i).getNom()) {
+                                            ob = (Artista) obL.getObA().get(i);
+                                        }
                                     }
-                                }
-                            }
 
-                            /*Si el campo opc venta esta seleccionado se establece el valor de la obra
+                                /*Si el campo opc venta esta seleccionado se establece el valor de la obra
                                 Al tratar de manejar excepcion cuando se ingresan caracteres distintos a numero en el precio, esto hace 
                                 que el programa se estropee y no lance la excepcion, por tanto si detecteta un valor no permitido
                                     se da la orden de que caputure un numberformatexception y a su vez si este es capturado se
                                     da la orden que se lance la excepcion rango valor con mensaje propio, el valor
                                 se establecera como -1 y en la clase de Obra al setectarlo se lanzara la excepcion correspondiente
-                             */
-                            long precio = 0;
-                            if (frmO.getCbOpcVentaObra().getSelectedIndex() == 0) {
-                                try {
+                                 */
+                                if (frmO.getCbOpcVentaObra().getSelectedIndex() == 0) {
+                                    try{
                                     precio = Long.parseLong(frmO.getTxtPrecioObra().getText());
-                                } catch (NumberFormatException ne) {
+                                    }catch(NumberFormatException ne){
                                         precio = -1;
                                     }
                                 }
 
-                            //Se toma la seleccion de tipo de obra del formulario: 0--> pintura, 1-->Escultura, 2-->dibujo a lapiz
-                            switch (frmO.getCbTipoObra().getSelectedIndex()) {
-                                case 0:
-                                    try {
+                                
+                                /*
+                                Se crea variable boolean res que sirve como testigo para saber si la obra fue registrada, en tal caso que
+                                haya sido registrada se hace verdadera para que se pueda lanzar la pregunta de registrar nuevamente artista
+                                en caso contrario este mensaje no se lanza
+                                */
+                                boolean res = true;
+                                //Se toma la seleccion de tipo de obra del formulario: 0--> pintura, 1-->Escultura, 2-->dibujo a lapiz
+                                switch (frmO.getCbTipoObra().getSelectedIndex()) {
+                                    case 0:
                                         obOP = new Pintura();
                                         obOP.setCod(frmO.getTxtCodObra().getText());
                                         obOP.setNom(frmO.getTxtNomObra().getText());
@@ -299,66 +301,169 @@ public class Controlador implements ActionListener {
                                         if (precio != 1) {
                                             obOP.setPrecio(precio);
                                             //Se pide confirmacion para crear la pintura, en caso afirmativo se agrega a la lista de Obras y se avisa
-                                            if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obOP.toString(), "Agregar Pintura", JOptionPane.YES_NO_OPTION)
+                                            if (JOptionPane.showConfirmDialog(frmP, "Desea agregar pintura? \n" + obOP.toString(), "Agregar Pintura", JOptionPane.YES_NO_OPTION)
                                                     == JOptionPane.YES_OPTION) {
                                                 obL.getObO().add(obOP);
                                                 JOptionPane.showMessageDialog(frmP, "Obra agregada satisfactoriamente");
+                                                res = true;
+                                            } else {
+                                                JOptionPane.showMessageDialog(frmP, "Registro cancelado");
+                                                res = false;
                                             }
                                         }
-                                    } catch (RangoValorException rv) {
-                                        JOptionPane.showMessageDialog(frmP, rv.getMessage(), "Error de valor de campo", 0);
-                                        if(obL.getObO().isEmpty()){
-                                            System.out.println("Lista obras vacia");
-                                        }
-                                        else{
-                                        for (int i = 0; i<obL.getObO().size(); i++){
-                                            System.out.println(obL.getObO().get(i).getNom()+"\n");
-                                        }
-                                        }
-                                    }
+                                        break;
 
-                                    break;
+                                    case 1:
+                                        obE = new Escultura();
+                                        obE.setCod(frmO.getTxtCodObra().getText());
+                                        obE.setNom(frmO.getTxtNomObra().getText());
+                                        obE.setArtista(ob);
+                                        if (precio != 1) {
+                                            obE.setPrecio(precio);
+                                            //Se pide confirmacion para crear la pintura, en caso afirmativo se agrega a la lista de Obras y se avisa
+                                            if (JOptionPane.showConfirmDialog(frmP, "Desea agregar escultura? \n" + obE.toString(), "Agregar escultura", JOptionPane.YES_NO_OPTION)
+                                                    == JOptionPane.YES_OPTION) {
+                                                obL.getObO().add(obE);
+                                                JOptionPane.showMessageDialog(frmP, "Obra agregada satisfactoriamente");
+                                                res = true;
 
-                                case 1:
-                                    obE = new Escultura();
-                                    obE.setCod(frmO.getTxtCodObra().getText());
-                                    obE.setNom(frmO.getTxtNomObra().getText());
-                                    obE.setArtista(ob);
-                                    //Si el campo opc venta esta seleccionado se establece el valor de la obra
-                                    if (frmO.getCbOpcVentaObra().getSelectedIndex() == 0) {
-                                        try {
-                                            obE.setPrecio(Long.parseLong(frmO.getTxtPrecioObra().getText()));
-                                        } catch (RangoValorException ex) {
-                                            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                                            } else {
+                                                JOptionPane.showMessageDialog(frmP, "Registro cancelado");
+                                                res = false;
+                                            }
                                         }
-                                    }
-                                    break;
+                                        break;
 
-                                case 2:
-                                    obOL = new ObLapiz();
-                                    obOL.setCod(frmO.getTxtCodObra().getText());
-                                    obOL.setNom(frmO.getTxtNomObra().getText());
-                                    obOL.setArtista(ob);
-                                    //Si el campo opc venta esta seleccionado se establece el valor de la obra
-                                    if (frmO.getCbOpcVentaObra().getSelectedIndex() == 0) {
-                                        try {
-                                            obOL.setPrecio(Long.parseLong(frmO.getTxtPrecioObra().getText()));
-                                        } catch (RangoValorException ex) {
-                                            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                                    case 2:
+                                        obOL = new ObLapiz();
+                                        obOL.setCod(frmO.getTxtCodObra().getText());
+                                        obOL.setNom(frmO.getTxtNomObra().getText());
+                                        obOL.setArtista(ob);
+                                        if (precio != 1) {
+                                            obOL.setPrecio(precio);
+                                            //Se pide confirmacion para crear la pintura, en caso afirmativo se agrega a la lista de Obras y se avisa
+                                            if (JOptionPane.showConfirmDialog(frmP, "Desea agregar obra a lapiz? \n" + obOL.toString(), "Agregar obra a lapiz", JOptionPane.YES_NO_OPTION)
+                                                    == JOptionPane.YES_OPTION) {
+                                                obL.getObO().add(obOL);
+                                                JOptionPane.showMessageDialog(frmP, "Obra agregada satisfactoriamente");
+                                                res = true;
+
+                                            } else {
+                                                JOptionPane.showMessageDialog(frmP, "Registro cancelado");
+                                                res = false;
+                                            }
                                         }
+                                        break;
+                                }
+                                if (res) {
+                                    //Se pregunta si desean agregar una nueva obra, en caso afirmativo se limpian los campos del FrmO
+                                    if (JOptionPane.showConfirmDialog(frmP, "Desea agregar otra obra?", "Agregar nueva obra", JOptionPane.YES_NO_OPTION)
+                                            == JOptionPane.YES_OPTION) {
+                                        frmO.getTxtCodObra().setText("");
+                                        frmO.getTxtNomObra().setText("");
+                                        frmO.getTxtPrecioObra().setText("");
+                                        frmO.getCbArtistaObra().setSelectedIndex(-1);
+                                        frmO.getCbOpcVentaObra().setSelectedIndex(-1);
+                                        frmO.getCbTipoObra().setSelectedIndex(-1);
+                                    } //Si no desean registrar mas obras se cierra el frmO
+                                    else {
+                                        frmO.dispose();
                                     }
-                                    break;
+                                }
+                            } catch (CampoVacioException cv) {
+                                JOptionPane.showMessageDialog(frmP, cv.getMessage(), "Error de campo vacio", 0);
+                            } catch (RangoValorException rv) {
+                                //Exception creada por setMaximum() para el frmO
+                                JOptionPane.showMessageDialog(frmP, rv.getMessage(), "Error de valor de campo", 0);
                             }
                         }
                     }
                 });
-
             }
+            
+            else if (e.getSource() == frmP.getMnuVenta()){
+                frmV = new FrmVenta();
+                frmP.getEscritorio().add(frmV);
+                frmV.setMaximum(true);
+                frmV.setVisible(true);
+                frmV.getCbTipoVenta().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                       /*
+                        El formulario de venta va a pedir que el usuario seleccione el tipo de obra que se va a vender, cuando alguna
+                        opcion ya sea pintura, escultura o dib a lapiz es seleccionada, esta desicion se toma con el switch del combobox
+                        Primeramente con cualquier opcion se deja el cb en blanco y luego, se recorre la lista de obras verificando que
+                        corresponda al tipo de objeto seleccionado como tipo de obra a vender y seguido del precio de esta sea diferente
+                        de cero, porque si el valor es cero, significa que la obra no se puede vender
+                        */
+                       switch(frmV.getCbTipoVenta().getSelectedIndex()){
+                           case 0:
+                               frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
+                               for (int i = 0; i<obL.getObO().size(); i++){
+                                   if(obL.getObO().get(i) instanceof Pintura && obL.getObO().get(i).getPrecio() != 0){
+                                       frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
+                                   }
+                               }
+                               break;
+                              
+                           case 1:
+                               frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
+                               for (int i = 0; i<obL.getObO().size(); i++){
+                                   if(obL.getObO().get(i) instanceof Escultura && obL.getObO().get(i).getPrecio() != 0){
+                                       frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
+                                   }
+                               }
+                               break;
+                               
+                           case 2:
+                               frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
+                               for (int i = 0; i<obL.getObO().size(); i++){
+                                   if(obL.getObO().get(i) instanceof ObLapiz && obL.getObO().get(i).getPrecio() != 0){
+                                       frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
+                                   }
+                               }
+                               break;
+                       }
+                    }
+                });
+                frmV.getCbCliVenta().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int i = 0; i<obL.getObC().size(); i++){
+                            if(obL.getObC().get(i).getPago() == 5000){
+                                frmV.getCbCliVenta().addItem(obL.getObC().get(i).getNom());
+                            }
+                        }
+                    }
+                });
+            }
+            ///BORRARR//
+            else if (e.getSource() == frmP.getMnuReporte()){
+                String datos = "Registros clientes: ";
+                for (int i = 0; i < obL.getObC().size(); i++) {
+                    datos += obL.getObC().get(i).getNom()+"\n";
+                }
+                datos += "\n\n\n";
+                
+                datos += "Registros artistas: ";
+                for (int i = 0; i < obL.getObA().size(); i++) {
+                    datos += obL.getObA().get(i).getNom()+"\n";
+                }
+                datos += "\n\n\n";
+                
+                datos += "Registros Obras: ";
+                for (int i = 0; i < obL.getObO().size(); i++) {
+                    datos += obL.getObO().get(i).getNom()+"\n";
+                }
+                datos += "\n\n\n";
+                
+                System.out.println(datos);
+            }
+
         } catch (PropertyVetoException ex) {
-            //Exception creada por setMaximum()
+            //Exception creada por setMaximum() para el frmP
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /*Se crea funcion que se encarga de crear el formulario para crear artista frmA, se encarga de validar los datos ingresados,
@@ -387,10 +492,10 @@ public class Controlador implements ActionListener {
                     obA.setDir(frmA.getTxtDirArt().getText());
                     obA.setCiu(frmA.getTxtCiudArt().getText());
                     obA.setTel(frmA.getTxtTelArt().getText());
-                    //Se pide confirmacion para crear al artista, en caso afirmativo se agrega a la lista de Persona y se avisa
+                    //Se pide confirmacion para crear al artista, en caso afirmativo se agrega a la lista de Artista y se avisa
                     if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obA.toString(), "Agregar artista", JOptionPane.YES_NO_OPTION)
                             == JOptionPane.YES_OPTION) {
-                        obL.getObP().add(obA);
+                        obL.getObA().add(obA);
                         JOptionPane.showMessageDialog(frmP, "Artista agregado satisfactoriamente");
                         //Se pregunta si desean agregar un nuevo artista, en caso afirmativo se limpian los campos del FrmA
                         if (JOptionPane.showConfirmDialog(frmP, "Desea agregar otro artista?", "Agregar nuevo artista", JOptionPane.YES_NO_OPTION)

@@ -13,25 +13,36 @@ import java.util.ArrayList;
  */
 public class Listas {
     
-    private ArrayList <Persona> ObP ;
+    private ArrayList <Cliente> ObC ;
+    private ArrayList <Artista> ObA ;
     private ArrayList <Obra> ObO ;
 
-    public Listas(ArrayList<Persona> ObP, ArrayList<Obra> ObO) {
-        this.ObP = ObP;
+    public Listas(ArrayList<Cliente> ObC, ArrayList<Artista> ObA, ArrayList<Obra> ObO) {
+        this.ObC = ObC;
+        this.ObA = ObA;
         this.ObO = ObO;
     }
 
     public Listas() {
-        this.ObP = new ArrayList<Persona>();
-        this.ObO = new ArrayList<Obra>();
+         this.ObC = new ArrayList<Cliente>();
+         this.ObA = new ArrayList<Artista>();
+         this.ObO = new ArrayList<Obra>();
     }
 
-    public ArrayList<Persona> getObP() {
-        return ObP;
+    public ArrayList<Cliente> getObC() {
+        return ObC;
     }
 
-    public void setObP(ArrayList<Persona> ObP) {
-        this.ObP = ObP;
+    public void setObC(ArrayList<Cliente> ObC) {
+        this.ObC = ObC;
+    }
+
+    public ArrayList<Artista> getObA() {
+        return ObA;
+    }
+
+    public void setObA(ArrayList<Artista> ObA) {
+        this.ObA = ObA;
     }
 
     public ArrayList<Obra> getObO() {
@@ -41,5 +52,7 @@ public class Listas {
     public void setObO(ArrayList<Obra> ObO) {
         this.ObO = ObO;
     }
+    
+        
       
 }

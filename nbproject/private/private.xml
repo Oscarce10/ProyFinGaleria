@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/Cliente.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/control/Controlador.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/CampoVacioException.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/Persona.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/RangoValorException.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/Obra.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/vista/FrmObra.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/Pintura.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/ObLapiz.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/Escultura.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/vista/FrmArt.java</file>
-            <file>file:/C:/Users/Oscar/Documents/NetBeansProjects/ProyFinalGaleria/src/modelo/Artista.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
