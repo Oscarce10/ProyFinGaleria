@@ -97,12 +97,10 @@ public class Controlador implements ActionListener {
             if (e.getSource() == frmP.getMnuExit()) {
                 System.exit(0);
             } /*Cuando se selecciona nuevo-->artista se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ 
-            else if (e.getSource() == frmP.getMnuArtista()) {
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ else if (e.getSource() == frmP.getMnuArtista()) {
                 agregarArtista();
             } /*Cuando se selecciona nuevo-->cliente se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ 
-            else if (e.getSource() == frmP.getMnuCliente()) {
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ else if (e.getSource() == frmP.getMnuCliente()) {
                 frmC = new FrmCli();
                 frmP.getEscritorio().add(frmC);
                 frmC.setMaximum(true); //Permite iniciar el formulario maximizado dentro del Jdesktop
@@ -187,7 +185,7 @@ public class Controlador implements ActionListener {
                 registrados solo como Artista y si se encuentra alguno, se toma su nombre y se inserta en el cb
                  */
                 for (int i = 0; i < obL.getObA().size(); i++) {
-                        frmO.getCbArtistaObra().addItem(obL.getObA().get(i).getNom());
+                    frmO.getCbArtistaObra().addItem(obL.getObA().get(i).getNom());
                 }
                 frmO.getCbArtistaObra().setSelectedIndex(-1); //Deja el combobox en seleccion nula por defecto
                 frmP.getEscritorio().add(frmO);
@@ -264,10 +262,10 @@ public class Controlador implements ActionListener {
                                  */
                                 Artista ob = new Artista();
                                 for (int i = 0; i < obL.getObA().size(); i++) {
-                                        if (frmO.getCbArtistaObra().getSelectedItem() == obL.getObA().get(i).getNom()) {
-                                            ob = (Artista) obL.getObA().get(i);
-                                        }
+                                    if (frmO.getCbArtistaObra().getSelectedItem() == obL.getObA().get(i).getNom()) {
+                                        ob = (Artista) obL.getObA().get(i);
                                     }
+                                }
 
                                 /*Si el campo opc venta esta seleccionado se establece el valor de la obra
                                 Al tratar de manejar excepcion cuando se ingresan caracteres distintos a numero en el precio, esto hace 
@@ -277,19 +275,18 @@ public class Controlador implements ActionListener {
                                 se establecera como -1 y en la clase de Obra al setectarlo se lanzara la excepcion correspondiente
                                  */
                                 if (frmO.getCbOpcVentaObra().getSelectedIndex() == 0) {
-                                    try{
-                                    precio = Long.parseLong(frmO.getTxtPrecioObra().getText());
-                                    }catch(NumberFormatException ne){
+                                    try {
+                                        precio = Long.parseLong(frmO.getTxtPrecioObra().getText());
+                                    } catch (NumberFormatException ne) {
                                         precio = -1;
                                     }
                                 }
 
-                                
                                 /*
                                 Se crea variable boolean res que sirve como testigo para saber si la obra fue registrada, en tal caso que
                                 haya sido registrada se hace verdadera para que se pueda lanzar la pregunta de registrar nuevamente artista
                                 en caso contrario este mensaje no se lanza
-                                */
+                                 */
                                 boolean res = true;
                                 //Se toma la seleccion de tipo de obra del formulario: 0--> pintura, 1-->Escultura, 2-->dibujo a lapiz
                                 switch (frmO.getCbTipoObra().getSelectedIndex()) {
@@ -379,67 +376,77 @@ public class Controlador implements ActionListener {
                         }
                     }
                 });
-            }
-            
-            else if (e.getSource() == frmP.getMnuVenta()){
+            } else if (e.getSource() == frmP.getMnuVenta()) {
                 frmV = new FrmVenta();
                 frmP.getEscritorio().add(frmV);
                 frmV.setMaximum(true);
                 frmV.setVisible(true);
+                //Agregar clientes al cb de cliente
+                for (int i = 0; i < obL.getObC().size(); i++) {
+                    if (obL.getObC().get(i).getPago() == 5000) {
+                        frmV.getCbCliVenta().addItem(obL.getObC().get(i).getNom());
+                    }
+                    frmV.getCbCliVenta().setSelectedItem(null);
+                }
+                //para poder saber cual cliente fue seleccionado
+                frmV.getCbCliVenta().addActionListener(this);
+
                 frmV.getCbTipoVenta().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                       /*
+                        /*
                         El formulario de venta va a pedir que el usuario seleccione el tipo de obra que se va a vender, cuando alguna
                         opcion ya sea pintura, escultura o dib a lapiz es seleccionada, esta desicion se toma con el switch del combobox
                         Primeramente con cualquier opcion se deja el cb en blanco y luego, se recorre la lista de obras verificando que
                         corresponda al tipo de objeto seleccionado como tipo de obra a vender y seguido del precio de esta sea diferente
                         de cero, porque si el valor es cero, significa que la obra no se puede vender
-                        */
-                       switch(frmV.getCbTipoVenta().getSelectedIndex()){
-                           case 0:
-                               frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
-                               for (int i = 0; i<obL.getObO().size(); i++){
-                                   if(obL.getObO().get(i) instanceof Pintura && obL.getObO().get(i).getPrecio() != 0){
-                                       frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
-                                   }
-                               }
-                               break;
-                              
-                           case 1:
-                               frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
-                               for (int i = 0; i<obL.getObO().size(); i++){
-                                   if(obL.getObO().get(i) instanceof Escultura && obL.getObO().get(i).getPrecio() != 0){
-                                       frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
-                                   }
-                               }
-                               break;
-                               
-                           case 2:
-                               frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
-                               for (int i = 0; i<obL.getObO().size(); i++){
-                                   if(obL.getObO().get(i) instanceof ObLapiz && obL.getObO().get(i).getPrecio() != 0){
-                                       frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
-                                   }
-                               }
-                               break;
-                       }
+                         */
+                        switch (frmV.getCbTipoVenta().getSelectedIndex()) {
+                            case 0:
+                                frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
+                                for (int i = 0; i < obL.getObO().size(); i++) {
+                                    if (obL.getObO().get(i) instanceof Pintura && obL.getObO().get(i).getPrecio() != 0) {
+                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
+                                    }
+                                }
+                                frmV.getCbNombreVenta().setSelectedItem(null);
+                                break;
+
+                            case 1:
+                                frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
+                                for (int i = 0; i < obL.getObO().size(); i++) {
+                                    if (obL.getObO().get(i) instanceof Escultura && obL.getObO().get(i).getPrecio() != 0) {
+                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
+                                    }
+                                }
+                                frmV.getCbNombreVenta().setSelectedItem(null);
+                                break;
+
+                            case 2:
+                                frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
+                                for (int i = 0; i < obL.getObO().size(); i++) {
+                                    if (obL.getObO().get(i) instanceof ObLapiz && obL.getObO().get(i).getPrecio() != 0) {
+                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
+                                    }
+                                }
+                                frmV.getCbNombreVenta().setSelectedItem(null);
+                                break;
+                        }
                     }
                 });
-                for (int i = 0; i<obL.getObC().size(); i++){
-                            if(obL.getObC().get(i).getPago() == 5000){
-                                frmV.getCbCliVenta().addItem(obL.getObC().get(i).getNom());
-                            }
-                        }
-                
+
                 frmV.getCbNombreVenta().addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        for (int i = 0; i<obL.getObO().size(); i++){
-                            if(obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()){
-                               frmV.getTxtPrecioVenta().setText(""+obL.getObO().get(i).getPrecio());
-                               frmV.getTxtImpVenta().setText(""+obL.getObO().get(i).impuesto());
-                               frmV.getTxtTotalVenta().setText(""+(obL.getObO().get(i).getPrecio() + obL.getObO().get(i).impuesto()));
+                        //Resetea los campos de valores cada vez que se cambia de tipo de obra y cada vez que se rellena el cb
+                        frmV.getTxtPrecioVenta().setText("");
+                        frmV.getTxtImpVenta().setText("");
+                        frmV.getTxtTotalVenta().setText("");
+                        for (int i = 0; i < obL.getObO().size(); i++) {
+                            if (frmV.getCbNombreVenta().getSelectedItem() == obL.getObO().get(i).getNom()) {
+                                frmV.getTxtPrecioVenta().setText("" + obL.getObO().get(i).getPrecio());
+                                frmV.getTxtImpVenta().setText("" + obL.getObO().get(i).impuesto());
+                                frmV.getTxtTotalVenta().setText("" + (obL.getObO().get(i).getPrecio() + obL.getObO().get(i).impuesto()));
                             }
                         }
                     }
@@ -450,27 +457,72 @@ public class Controlador implements ActionListener {
                         frmV.dispose();
                     }
                 });
-            }
-            ///BORRARR//
-            else if (e.getSource() == frmP.getMnuReporte()){
+                frmV.getBtnRegVenta().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (frmV.getCbCliVenta().getSelectedItem() == null) {
+                            JOptionPane.showMessageDialog(frmP, "El campo de cliente no esta seleccionado");
+                        } else if (frmV.getCbNombreVenta().getSelectedItem() == null) {
+                            JOptionPane.showMessageDialog(frmP, "El campo de nombre de obra no esta seleccionado");
+                        } else {
+                            if (JOptionPane.showConfirmDialog(frmP, "Registrar venta? \n" + "Tipo de obra: " + frmV.getCbTipoVenta().getSelectedItem()
+                                    + "\n" + "Nombre de obra: " + frmV.getCbNombreVenta().getSelectedItem() + "\n" + "Cliente: " + frmV.getCbCliVenta().getSelectedItem()
+                                    + "\n" + "Precio total a pagar: " + frmV.getTxtTotalVenta().getText(), "Registrar Venta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                                switch (frmV.getCbTipoVenta().getSelectedIndex()) {
+                                    case 0:
+                                        for (int i = 0; i < obL.getObO().size(); i++) {
+                                            if (obL.getObO().get(i) instanceof Pintura && obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()) {
+                                                obL.getObO().remove(i);
+                                            }
+                                        }
+                                        break;
+                                    case 1:
+                                        for (int i = 0; i < obL.getObO().size(); i++) {
+                                            if (obL.getObO().get(i) instanceof Escultura && obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()) {
+                                                obL.getObO().remove(i);
+                                            }
+                                        }
+                                        break;
+
+                                    case 2:
+                                        for (int i = 0; i < obL.getObO().size(); i++) {
+                                            if (obL.getObO().get(i) instanceof ObLapiz && obL.getObO().get(i).getNom() == frmV.getCbNombreVenta().getSelectedItem()) {
+                                                obL.getObO().remove(i);
+                                            }
+                                        }
+                                        break;
+                                }
+
+                                JOptionPane.showMessageDialog(frmP, "Venta registrada satisfactoriamente");
+                                frmV.dispose();
+                            }
+                            else{
+                                 JOptionPane.showMessageDialog(frmP, "Venta cancelada");
+                            }
+                        }
+                    }
+                }
+                );
+            } ///BORRARR//
+            else if (e.getSource() == frmP.getMnuReporte()) {
                 String datos = "Registros clientes: ";
                 for (int i = 0; i < obL.getObC().size(); i++) {
-                    datos += obL.getObC().get(i).getNom()+"\n";
+                    datos += obL.getObC().get(i).getNom() + "pago: " + obL.getObC().get(i).getPago() + "\n";
                 }
                 datos += "\n\n\n";
-                
+
                 datos += "Registros artistas: ";
                 for (int i = 0; i < obL.getObA().size(); i++) {
-                    datos += obL.getObA().get(i).getNom()+"\n";
+                    datos += obL.getObA().get(i).getNom() + "\n";
                 }
                 datos += "\n\n\n";
-                
+
                 datos += "Registros Obras: ";
                 for (int i = 0; i < obL.getObO().size(); i++) {
-                    datos += obL.getObO().get(i).getNom()+"\n";
+                    datos += obL.getObO().get(i).getNom() + "\n";
                 }
                 datos += "\n\n\n";
-                
+
                 System.out.println(datos);
             }
 
