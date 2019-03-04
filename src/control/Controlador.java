@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import modelo.Artista;
+import modelo.BaseDeDatos;
 import modelo.CampoVacioException;
 import modelo.Cliente;
 import modelo.Escultura;
@@ -43,8 +44,9 @@ public class Controlador implements ActionListener {
     private Listas obL;
     private ObLapiz obOL;
     private Pintura obOP;
+    private BaseDeDatos obBD;
 
-    public Controlador(FrmPpal frmP, FrmArt frmA, FrmCli frmC, FrmObra FrmO, FrmVenta FrmV, Artista obA, Cliente obC, Escultura obE, Listas obL, ObLapiz obOL, Pintura obOP) {
+    public Controlador(FrmPpal frmP, FrmArt frmA, FrmCli frmC, FrmObra FrmO, FrmVenta FrmV, Artista obA, Cliente obC, Escultura obE, Listas obL, ObLapiz obOL, Pintura obOP, BaseDeDatos obBD) {
         this.frmP = frmP;
         this.frmA = frmA;
         this.frmC = frmC;
@@ -56,6 +58,7 @@ public class Controlador implements ActionListener {
         this.obL = obL;
         this.obOL = obOL;
         this.obOP = obOP;
+        this.obBD = obBD;
         frmP.getEscritorio().setSize(540, 600);
         frmP.getMnuArtista().addActionListener(this);
         frmP.getMnuCliente().addActionListener(this);
@@ -71,6 +74,7 @@ public class Controlador implements ActionListener {
     public Controlador() {
         this.frmP = new FrmPpal();
         this.obL = new Listas();
+        obBD = new BaseDeDatos();
         frmP.getEscritorio().setSize(500, 500);
         frmP.setSize(500, 500);
         frmP.getMnuArtista().addActionListener(this);
@@ -144,6 +148,10 @@ public class Controlador implements ActionListener {
                                 if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obC.toString(), "Agregar cliente", JOptionPane.YES_NO_OPTION)
                                         == JOptionPane.YES_OPTION) {
                                     obL.getObC().add(obC);
+                                    obBD.insertar("cliente", "id", obC.getId());
+                                    obBD.insertar("cliente", "nombre", obC.getNom());
+                                    obBD.insertar("cliente", "telefono", obC.getTel());
+                                    obBD.insertar("cliente", "pago", ""+obC.getPago());
                                     JOptionPane.showMessageDialog(frmP, "Cliente agregado satisfactoriamente");
                                     //Se pregunta si desean agregar un nuevo cliente, en caso afirmativo se limpian los campos del FrmC
                                     if (JOptionPane.showConfirmDialog(frmP, "Desea agregar otro cliente?", "Agregar nuevo cliente", JOptionPane.YES_NO_OPTION)
