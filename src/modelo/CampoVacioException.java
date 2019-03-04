@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * se crea una clase CampoVacioException la cual hereda funciones de la clase Exception 
  * @author Oscar
  */
 public class CampoVacioException extends Exception{

@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * se creo una clase ObLapiz la cual hereda atributos y funciones de la clase Obra 
  * @author Oscar
  */
 public class ObLapiz extends Obra{
@@ -16,7 +16,7 @@ public class ObLapiz extends Obra{
      * @param cod codigo 
      * @param nom  nombre 
      * @param precio precio 
-     * @param artista Artista
+     * @param artista objeto tipo Artista
      */
     public ObLapiz(String cod, String nom, long precio, Artista artista) {
         super(cod, nom, precio, artista);

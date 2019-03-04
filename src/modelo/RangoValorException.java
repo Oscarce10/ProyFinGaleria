@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package modelo;
-
+ // falta constructor basico 
 /**
- *
+ * se crea una clase RangoValorException la cual hereda funciones de la clase Exception 
  * @author Oscar
  */
 public class RangoValorException extends Exception {
@@ -14,6 +14,11 @@ public class RangoValorException extends Exception {
     private int num;
     private String campo;
 
+    /**
+     * constructor parametrico que permite instanciar la clase RangoValorException apartir de los datos recibidos 
+     * @param num numero 
+     * @param campo campo 
+     */
     public RangoValorException(int num, String campo) {
         this.num = num;
         this.campo = campo;

@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * se creo una clase Artista la cual hereda atributos de la clase Persona 
  * @author Oscar
  */
 public class Artista extends Persona{

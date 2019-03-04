@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * se creo una clase ConexionMysql la cual permite conectar la base de datos con el programa
  * @author Estudiante
  */
 public class ConexionMysql {

@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * se creo una clase Escultura la cual hereda atributos y funciones de la clase Obra 
  * @author Oscar
  */
 public class Escultura extends Obra{
@@ -16,7 +16,7 @@ public class Escultura extends Obra{
      * @param cod codigo 
      * @param nom nombre 
      * @param precio precio 
-     * @param artista artista
+     * @param artista obtjeto tipo Artista
      */
     public Escultura(String cod, String nom, long precio, Artista artista) {
         super(cod, nom, precio, artista);

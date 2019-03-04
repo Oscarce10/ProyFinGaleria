@@ -6,7 +6,7 @@
 package modelo;
 
 /**
- *
+ * se creo una clase cliente la cual hereda atributos de la clase Persona 
  * @author Oscar
  */
 public class Cliente extends Persona{

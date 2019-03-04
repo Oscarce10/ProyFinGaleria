@@ -8,7 +8,7 @@ package modelo;
 import java.util.ArrayList;
 
 /**
- *
+ * se creo una clase Lista la cual  
  * @author Oscar
  */
 public class Listas {
