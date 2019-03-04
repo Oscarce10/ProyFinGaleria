@@ -13,6 +13,10 @@ public class CampoVacioException extends Exception{
     
     private String campo;
 
+    /**
+     * constructor parametrico que permite instanciar la clas eCampoVacioException con valores predeterminados
+     * @param campo campo 
+     */
     public CampoVacioException(String campo) {
         super();
         this.campo = campo;
