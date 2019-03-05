@@ -5,6 +5,7 @@
  */
 package control;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.awt.event.ActionEvent;
 import vista.FrmArt;
 import vista.FrmCli;
@@ -13,6 +14,7 @@ import vista.FrmPpal;
 import vista.FrmVenta;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -21,6 +23,7 @@ import modelo.Artista;
 import modelo.BaseDeDatos;
 import modelo.CampoVacioException;
 import modelo.Cliente;
+import modelo.ConexionMysql;
 import modelo.Escultura;
 import modelo.Listas;
 import modelo.ObLapiz;
@@ -45,6 +48,7 @@ public class Controlador implements ActionListener {
     private ObLapiz obOL;
     private Pintura obOP;
     private BaseDeDatos obBD;
+    private ConexionMysql obCBD;
 
     public Controlador(FrmPpal frmP, FrmArt frmA, FrmCli frmC, FrmObra FrmO, FrmVenta FrmV, Artista obA, Cliente obC, Escultura obE, Listas obL, ObLapiz obOL, Pintura obOP, BaseDeDatos obBD) {
         this.frmP = frmP;
@@ -75,6 +79,7 @@ public class Controlador implements ActionListener {
         this.frmP = new FrmPpal();
         this.obL = new Listas();
         obBD = new BaseDeDatos();
+        obCBD = new ConexionMysql();
         frmP.getEscritorio().setSize(500, 500);
         frmP.setSize(500, 500);
         frmP.getMnuArtista().addActionListener(this);
@@ -93,18 +98,26 @@ public class Controlador implements ActionListener {
         frmP.setVisible(true);
         frmP.setDefaultCloseOperation(frmP.EXIT_ON_CLOSE);
     }
+    
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            //Si es seleccionado archivo --> salir se termina el programa
             if (e.getSource() == frmP.getMnuExit()) {
                 System.exit(0);
-            } /*Cuando se selecciona nuevo-->artista se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ else if (e.getSource() == frmP.getMnuArtista()) {
+            }
+            
+            //Si es seleccionado archivo --> salir se termina el programa
+             /*Cuando se selecciona nuevo-->artista se crea formulario nuevo, se agregan los actionlistener a los botones y
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ 
+             else if (e.getSource() == frmP.getMnuArtista()) {
+                 obCBD.conectar();
                 agregarArtista();
             } /*Cuando se selecciona nuevo-->cliente se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ else if (e.getSource() == frmP.getMnuCliente()) {
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ 
+             else if (e.getSource() == frmP.getMnuCliente()) {
+                 obCBD.conectar();
                 frmC = new FrmCli();
                 frmP.getEscritorio().add(frmC);
                 frmC.setMaximum(true); //Permite iniciar el formulario maximizado dentro del Jdesktop
@@ -146,12 +159,10 @@ public class Controlador implements ActionListener {
                                 obC.setPago(Integer.parseInt(frmC.getTxtPagoCliente().getText()));
                                 //Se pide confirmacion para crear al cliente, en caso afirmativo se agrega a la lista de Persona y se avisa
                                 if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obC.toString(), "Agregar cliente", JOptionPane.YES_NO_OPTION)
-                                        == JOptionPane.YES_OPTION) {
+                                        == JOptionPane.YES_OPTION) {                                    
+                                    obBD.insertar("cliente", "'" + obC.getId() + "'" + "," + "'" + obC.getNom() + "'"  + "," + "'" 
+                                            + obC.getTel() + "'" + "," + obC.getPago());
                                     obL.getObC().add(obC);
-                                    obBD.insertar("cliente", "id", obC.getId());
-                                    obBD.insertar("cliente", "nombre", obC.getNom());
-                                    obBD.insertar("cliente", "telefono", obC.getTel());
-                                    obBD.insertar("cliente", "pago", ""+obC.getPago());
                                     JOptionPane.showMessageDialog(frmP, "Cliente agregado satisfactoriamente");
                                     //Se pregunta si desean agregar un nuevo cliente, en caso afirmativo se limpian los campos del FrmC
                                     if (JOptionPane.showConfirmDialog(frmP, "Desea agregar otro cliente?", "Agregar nuevo cliente", JOptionPane.YES_NO_OPTION)
@@ -185,6 +196,7 @@ public class Controlador implements ActionListener {
                     }
                 });
             } else if (e.getSource() == frmP.getMnuObra()) {
+                obCBD.conectar();
                 frmP.setSize(500, 550); //Para que se vea bien el frmO, se reajustara a su valor original al final cada vez que se cierre frmO
                 frmO = new FrmObra();
                 /*Como se observa el cb de artista solo se llenara a medida que estan los artistas registrados, en tal caso que se
@@ -385,6 +397,7 @@ public class Controlador implements ActionListener {
                     }
                 });
             } else if (e.getSource() == frmP.getMnuVenta()) {
+                obCBD.conectar();
                 frmV = new FrmVenta();
                 frmP.getEscritorio().add(frmV);
                 frmV.setMaximum(true);
@@ -466,6 +479,7 @@ public class Controlador implements ActionListener {
                     }
                 });
                 frmV.getBtnRegVenta().addActionListener(new ActionListener() {
+                    
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (frmV.getCbCliVenta().getSelectedItem() == null) {
@@ -537,6 +551,9 @@ public class Controlador implements ActionListener {
         } catch (PropertyVetoException ex) {
             //Exception creada por setMaximum() para el frmP
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch(NullPointerException ne ){
+            JOptionPane.showMessageDialog(frmP, "Conexion con base de datos fallida", "Error de conexion", 0);
         }
     }
 
