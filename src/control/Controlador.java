@@ -216,6 +216,28 @@ public class Controlador implements ActionListener {
                         }
                     }
                 });
+                frmO.getBtnimagen().addActionListener(new ActionListener() {
+            File archivo ;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            int resultado;
+                buscarimagen buscador= new buscarimagen();
+                FileNameExtensionFilter formato =new FileNameExtensionFilter("JPG,PNG,GIF","jpg","png","gif");
+                buscador.jFileChooser1.setFileFilter(formato);
+                resultado = buscador.jFileChooser1.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION ==resultado ){
+                    archivo = buscador.jFileChooser1.getSelectedFile();
+                    frmO.getTxturl().setText(archivo.getAbsolutePath());
+                    try{
+                    ImageIcon imgicon = new ImageIcon(archivo.toString());
+                    Icon icono =new ImageIcon(imgicon.getImage().getScaledInstance(frmO.getJlbimagen().getWidth(),frmO.getJlbimagen().getHeight(), Image.SCALE_DEFAULT));
+                frmO.getJlbimagen().setIcon(icono);
+                    }catch(Exception ex){
+                        JOptionPane.showMessageDialog(null, "erroe"+ex);
+                    }
+                }
+            }
+                });
                 /*
                 En tal caso que no exista el artista de la obra que se va a ingresar, existe la opcion de registrar artista al final del formulario
                 la cual al oprimirla, cierra el formulario de obra y abre uno nuebo de artista
@@ -539,30 +561,8 @@ public class Controlador implements ActionListener {
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //  ufff men 
+        //  
         
-        frmO.getBtnimagen().addActionListener(new ActionListener() {
-            File archivo ;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            int resultado;
-                buscarimagen buscador= new buscarimagen();
-                FileNameExtensionFilter formato =new FileNameExtensionFilter("JPG,PNG,GIF","jpg","png","gif");
-                buscador.jFileChooser1.setFileFilter(formato);
-                resultado = buscador.jFileChooser1.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION ==resultado ){
-                    archivo = buscador.jFileChooser1.getSelectedFile();
-                    frmO.getTxturl().setText(archivo.getAbsolutePath());
-                    try{
-                    ImageIcon imgicon = new ImageIcon(archivo.toString());
-                    Icon icono =new ImageIcon(imgicon.getImage().getScaledInstance(frmO.getJlbimagen().getWidth(),frmO.getJlbimagen().getHeight(), Image.SCALE_DEFAULT));
-                frmO.getJlbimagen().setIcon(icono);
-                    }catch(Exception ex){
-                        JOptionPane.showMessageDialog(null, "erroe"+ex);
-                    }
-                }
-            }
-        });
              
     }
 
