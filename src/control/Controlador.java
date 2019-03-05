@@ -5,6 +5,8 @@
  */
 package control;
 
+import java.awt.Image;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import vista.FrmArt;
 import vista.FrmCli;
@@ -13,10 +15,15 @@ import vista.FrmPpal;
 import vista.FrmVenta;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Artista;
 import modelo.CampoVacioException;
 import modelo.Cliente;
@@ -25,6 +32,7 @@ import modelo.Listas;
 import modelo.ObLapiz;
 import modelo.Pintura;
 import modelo.RangoValorException;
+import vista.buscarimagen;
 
 /**
  *
@@ -530,6 +538,32 @@ public class Controlador implements ActionListener {
             //Exception creada por setMaximum() para el frmP
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        //  ufff men 
+        
+        frmO.getBtnimagen().addActionListener(new ActionListener() {
+            File archivo ;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            int resultado;
+                buscarimagen buscador= new buscarimagen();
+                FileNameExtensionFilter formato =new FileNameExtensionFilter("JPG,PNG,GIF","jpg","png","gif");
+                buscador.jFileChooser1.setFileFilter(formato);
+                resultado = buscador.jFileChooser1.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION ==resultado ){
+                    archivo = buscador.jFileChooser1.getSelectedFile();
+                    frmO.getTxturl().setText(archivo.getAbsolutePath());
+                    try{
+                    ImageIcon imgicon = new ImageIcon(archivo.toString());
+                    Icon icono =new ImageIcon(imgicon.getImage().getScaledInstance(frmO.getJlbimagen().getWidth(),frmO.getJlbimagen().getHeight(), Image.SCALE_DEFAULT));
+                frmO.getJlbimagen().setIcon(icono);
+                    }catch(Exception ex){
+                        JOptionPane.showMessageDialog(null, "erroe"+ex);
+                    }
+                }
+            }
+        });
+             
     }
 
     /*Se crea funcion que se encarga de crear el formulario para crear artista frmA, se encarga de validar los datos ingresados,

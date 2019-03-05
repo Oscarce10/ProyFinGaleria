@@ -10,6 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -30,6 +33,22 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
     public void setBtnAddArtObra(JButton btnAddArtObra) {
         this.btnAddArtObra = btnAddArtObra;
+    }
+
+    public JButton getBtnimagen() {
+        return btnimagen;
+    }
+
+    public void setBtnimagen(JButton btnimagen) {
+        this.btnimagen = btnimagen;
+    }
+
+    public JTextField getTxturl() {
+        return txturl;
+    }
+
+    public void setTxturl(JTextField txturl) {
+        this.txturl = txturl;
     }
 
     public JButton getBtnAddObra() {
@@ -72,13 +91,15 @@ public class FrmObra extends javax.swing.JInternalFrame {
         this.cbTipoObra = cbTipoObra;
     }
 
-    public JTextArea getTxaObra() {
-        return txaObra;
+    public JLabel getJlbimagen() {
+        return jlbimagen;
     }
 
-    public void setTxaObra(JTextArea txaObra) {
-        this.txaObra = txaObra;
+    public void setJlbimagen(JLabel jlbimagen) {
+        this.jlbimagen = jlbimagen;
     }
+
+   
 
     public JTextField getTxtCodObra() {
         return txtCodObra;
@@ -180,8 +201,9 @@ public class FrmObra extends javax.swing.JInternalFrame {
         btnCancelObra = new javax.swing.JButton();
         jPanel36 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaObra = new javax.swing.JTextArea();
+        btnimagen = new javax.swing.JButton();
+        txturl = new javax.swing.JTextField();
+        jlbimagen = new javax.swing.JLabel();
         jPanel27 = new javax.swing.JPanel();
         jPanel37 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -314,26 +336,38 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel36.setLayout(new java.awt.BorderLayout());
 
-        txaObra.setColumns(20);
-        txaObra.setRows(5);
-        jScrollPane1.setViewportView(txaObra);
+        btnimagen.setText("buscar imagen");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jlbimagen, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(btnimagen)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(txturl, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnimagen)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txturl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 28, Short.MAX_VALUE))
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jlbimagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        txturl.setEditable(false);
 
         jPanel36.add(jPanel17, java.awt.BorderLayout.PAGE_START);
 
@@ -373,6 +407,7 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAddArtObra;
     private javax.swing.JButton btnAddObra;
     private javax.swing.JButton btnCancelObra;
+    private javax.swing.JButton btnimagen;
     private javax.swing.JComboBox<String> cbArtistaObra;
     private javax.swing.JComboBox<String> cbOpcVentaObra;
     private javax.swing.JComboBox<String> cbTipoObra;
@@ -418,12 +453,12 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlbimagen;
     private javax.swing.JPanel lblPrecio;
     private javax.swing.JPanel pnlPrecio;
-    private javax.swing.JTextArea txaObra;
     private javax.swing.JTextField txtCodObra;
     private javax.swing.JTextField txtNomObra;
     private javax.swing.JTextField txtPrecioObra;
+    private javax.swing.JTextField txturl;
     // End of variables declaration//GEN-END:variables
 }
