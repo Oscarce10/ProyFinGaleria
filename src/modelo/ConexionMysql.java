@@ -51,7 +51,8 @@ public class ConexionMysql {
             System.out.println("ex.getMessage();");
            
         } catch (SQLException ex) {
-            Logger.getLogger(ConexionMysql.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error, no se ha podido conectar con base de datos", "Error de conexion BD", 0);
+            System.exit(0);
         }
     }
 
@@ -69,10 +70,6 @@ public class ConexionMysql {
 
     public void setMsj(String msj) {
         this.msj = msj;
-    }
-
-    public void conectar() {
-        
     }
 
     public void ejecuta(String Sql){
