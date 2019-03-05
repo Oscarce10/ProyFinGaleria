@@ -43,6 +43,16 @@ public class ConexionMysql {
     public ConexionMysql() {
         this.conexion = null;
         this.msj = "";
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String ruta = "jdbc:mysql://localhost/galeria";
+            conexion = DriverManager.getConnection(ruta, "root", "");
+        }catch (ClassNotFoundException ex) {
+            System.out.println("ex.getMessage();");
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(ConexionMysql.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public Connection getConexion() {
@@ -62,21 +72,11 @@ public class ConexionMysql {
     }
 
     public void conectar() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String ruta = "jdbc:mysql://localhost/galeria";
-            conexion = DriverManager.getConnection(ruta, "root", "");
-        }catch (ClassNotFoundException ex) {
-            System.out.println("ex.getMessage();");
-           
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexionMysql.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     public void ejecuta(String Sql){
         try {
-            System.out.println("aca creo que explotya");
             conexion.createStatement().executeUpdate(Sql);
             conexion.close();
         } catch (SQLException ex) {

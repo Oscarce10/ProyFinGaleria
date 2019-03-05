@@ -8,6 +8,7 @@ package modelo;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,25 +20,25 @@ import javax.swing.JOptionPane;
 public class BaseDeDatos {
 
     private ConexionMysql con;
+    private Statement sentencia;
+    private ResultSet resultado;
 
     public BaseDeDatos() {
         this.con = new ConexionMysql();
+        sentencia = null;
+        resultado = null;
     }
 
-    public void insertar(String tabla, String valor) {
+    public void insertar(String tabla, String valor) throws SQLException {
         System.out.println(valor);
         String sql = "INSERT INTO " + tabla + " values(" + valor + ");";
         System.out.println(sql);
-        con.ejecuta(sql);
+        sentencia = con.getConexion().createStatement();
+        sentencia.executeUpdate(sql);
     }
 
-public void eliminar(String tabla, String columna, String condicion, String condicion2) {
-    con.ejecuta("DELETE FROM " + tabla + " WHERE " + condicion + " = " + condicion2 + "'");
-    }
-
-    public ResultSet Consultar() {
+    public void Consultar() {
         ResultSet tabla = con.consuta("SELECT * FROM `autor`");
-        return tabla;
     }
 
 }

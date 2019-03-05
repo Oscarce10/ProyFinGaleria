@@ -80,6 +80,7 @@ public class Controlador implements ActionListener {
         this.obL = new Listas();
         obBD = new BaseDeDatos();
         obCBD = new ConexionMysql();
+
         frmP.getEscritorio().setSize(500, 500);
         frmP.setSize(500, 500);
         frmP.getMnuArtista().addActionListener(this);
@@ -98,26 +99,20 @@ public class Controlador implements ActionListener {
         frmP.setVisible(true);
         frmP.setDefaultCloseOperation(frmP.EXIT_ON_CLOSE);
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
             if (e.getSource() == frmP.getMnuExit()) {
                 System.exit(0);
-            }
-            
-            //Si es seleccionado archivo --> salir se termina el programa
-             /*Cuando se selecciona nuevo-->artista se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ 
-             else if (e.getSource() == frmP.getMnuArtista()) {
-                 obCBD.conectar();
+            } //Si es seleccionado archivo --> salir se termina el programa
+            /*Cuando se selecciona nuevo-->artista se crea formulario nuevo, se agregan los actionlistener a los botones y
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar artista se crea el objeto artista*/ else if (e.getSource() == frmP.getMnuArtista()) {
+                obCBD.conectar();
                 agregarArtista();
             } /*Cuando se selecciona nuevo-->cliente se crea formulario nuevo, se agregan los actionlistener a los botones y
-            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ 
-             else if (e.getSource() == frmP.getMnuCliente()) {
-                 obCBD.conectar();
+            Se agregan las acciones a tomar cuando se oprimen los botones, si es de agregar cliente se crea el objeto cliente*/ else if (e.getSource() == frmP.getMnuCliente()) {
+                obCBD.conectar();
                 frmC = new FrmCli();
                 frmP.getEscritorio().add(frmC);
                 frmC.setMaximum(true); //Permite iniciar el formulario maximizado dentro del Jdesktop
@@ -159,8 +154,8 @@ public class Controlador implements ActionListener {
                                 obC.setPago(Integer.parseInt(frmC.getTxtPagoCliente().getText()));
                                 //Se pide confirmacion para crear al cliente, en caso afirmativo se agrega a la lista de Persona y se avisa
                                 if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obC.toString(), "Agregar cliente", JOptionPane.YES_NO_OPTION)
-                                        == JOptionPane.YES_OPTION) {                                    
-                                    obBD.insertar("cliente", "'" + obC.getId() + "'" + "," + "'" + obC.getNom() + "'"  + "," + "'" 
+                                        == JOptionPane.YES_OPTION) {
+                                    obBD.insertar("cliente", "'" + obC.getId() + "'" + "," + "'" + obC.getNom() + "'" + "," + "'"
                                             + obC.getTel() + "'" + "," + obC.getPago());
                                     obL.getObC().add(obC);
                                     JOptionPane.showMessageDialog(frmP, "Cliente agregado satisfactoriamente");
@@ -185,6 +180,10 @@ public class Controlador implements ActionListener {
                                 JOptionPane.showMessageDialog(frmP, cv.getMessage(), "Error de campo vacio", 0);
                             } catch (RangoValorException rv) {
                                 JOptionPane.showMessageDialog(frmP, rv.getMessage(), "Error de valor de campo", 0);
+                            } catch (SQLException ex) {
+                                if (ex.getErrorCode() == 1062) {
+                                    JOptionPane.showMessageDialog(frmP, "Identificacion duplicada, revise datos", "Error de identificacion", 0);
+                                }
                             }
                         }
                     }
@@ -479,7 +478,7 @@ public class Controlador implements ActionListener {
                     }
                 });
                 frmV.getBtnRegVenta().addActionListener(new ActionListener() {
-                    
+
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (frmV.getCbCliVenta().getSelectedItem() == null) {
@@ -517,9 +516,8 @@ public class Controlador implements ActionListener {
 
                                 JOptionPane.showMessageDialog(frmP, "Venta registrada satisfactoriamente");
                                 frmV.dispose();
-                            }
-                            else{
-                                 JOptionPane.showMessageDialog(frmP, "Venta cancelada");
+                            } else {
+                                JOptionPane.showMessageDialog(frmP, "Venta cancelada");
                             }
                         }
                     }
@@ -551,8 +549,7 @@ public class Controlador implements ActionListener {
         } catch (PropertyVetoException ex) {
             //Exception creada por setMaximum() para el frmP
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch(NullPointerException ne ){
+        } catch (NullPointerException ne) {
             JOptionPane.showMessageDialog(frmP, "Conexion con base de datos fallida", "Error de conexion", 0);
         }
     }
@@ -586,6 +583,8 @@ public class Controlador implements ActionListener {
                     //Se pide confirmacion para crear al artista, en caso afirmativo se agrega a la lista de Artista y se avisa
                     if (JOptionPane.showConfirmDialog(frmP, "Desea agregar? \n" + obA.toString(), "Agregar artista", JOptionPane.YES_NO_OPTION)
                             == JOptionPane.YES_OPTION) {
+                        obBD.insertar("artista", "'" + ""+obA.getId() + "'" + "," + "'" + obA.getNom() + "'" + "," + "'"
+                                + obA.getTel() + "'" + "," + "'" + obA.getDir() + "'" + "," + "'" + obA.getCiu() + "'");
                         obL.getObA().add(obA);
                         JOptionPane.showMessageDialog(frmP, "Artista agregado satisfactoriamente");
                         //Se pregunta si desean agregar un nuevo artista, en caso afirmativo se limpian los campos del FrmA
@@ -609,6 +608,10 @@ public class Controlador implements ActionListener {
                     JOptionPane.showMessageDialog(frmP, cv.getMessage(), "Error de campo vacio", 0);
                 } catch (RangoValorException rv) {
                     JOptionPane.showMessageDialog(frmP, rv.getMessage(), "Error de valor de campo", 0);
+                } catch (SQLException ex) {
+                    if (ex.getErrorCode() == 1062) {
+                        JOptionPane.showMessageDialog(frmP, "Identificacion duplicada, revise datos", "Error de identificacion", 0);
+                    }
                 }
             }
         });
