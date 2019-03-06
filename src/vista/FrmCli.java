@@ -47,13 +47,6 @@ public class FrmCli extends javax.swing.JInternalFrame {
         this.cbCliente = cbCliente;
     }
 
-    public JTextArea getTxaCliente() {
-        return txaCliente;
-    }
-
-    public void setTxaCliente(JTextArea txaCliente) {
-        this.txaCliente = txaCliente;
-    }
 
     public JTextField getTxtIdCliente() {
         return txtIdCliente;
@@ -143,9 +136,6 @@ public class FrmCli extends javax.swing.JInternalFrame {
         btnAddCliente = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnCancelCliente = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaCliente = new javax.swing.JTextArea();
 
         setTitle("Registro: Cliente");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -264,28 +254,6 @@ public class FrmCli extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        txaCliente.setColumns(20);
-        txaCliente.setRows(5);
-        jScrollPane1.setViewportView(txaCliente);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -325,7 +293,6 @@ public class FrmCli extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
@@ -337,8 +304,6 @@ public class FrmCli extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txaCliente;
     private javax.swing.JTextField txtIdCliente;
     private javax.swing.JTextField txtNomCliente;
     private javax.swing.JTextField txtPagoCliente;

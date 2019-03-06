@@ -161,10 +161,7 @@ public class FrmListaObras extends javax.swing.JInternalFrame {
 
         tblDispVen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Tipo", "Codigo", "Nombre", "Precio", "Artista"
@@ -188,10 +185,7 @@ public class FrmListaObras extends javax.swing.JInternalFrame {
 
         tblVendidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Tipo", "Codigo", "Nombre", "Precio"
@@ -215,10 +209,7 @@ public class FrmListaObras extends javax.swing.JInternalFrame {
 
         tblNoVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Tipo", "Codigo", "Nombre"

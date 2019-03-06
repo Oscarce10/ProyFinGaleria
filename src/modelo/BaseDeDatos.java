@@ -44,5 +44,12 @@ public class BaseDeDatos {
         resultado = sentencia.executeQuery(sql);
         return resultado;
     }
+    
+    public void eliminar(String tablas, String where) throws SQLException{
+        String sql = "DELETE FROM "+tablas+where+";";
+        sentencia = con.getConexion().createStatement();
+        System.out.println(sql);
+        sentencia.executeUpdate(sql);
+    }
 
 }

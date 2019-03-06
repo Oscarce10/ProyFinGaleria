@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.io.File;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
@@ -43,6 +44,7 @@ import vista.FrmListaObras;
 import vista.frmListaCli;
 import vista.FrmListArt;
 import vista.buscarimagen;
+import modelo.ArchPdf;
 
 /**
  *
@@ -67,6 +69,7 @@ public class Controlador implements ActionListener {
     private ResultSet rs;
     private frmListaCli frmLC;
     private FrmListArt frmLA;
+    private ArchPdf obPdf;
     
 
     public Controlador(FrmPpal frmP, FrmArt frmA, FrmCli frmC, FrmObra FrmO, FrmVenta FrmV, Artista obA, Cliente obC, Escultura obE, Listas obL, ObLapiz obOL, Pintura obOP, BaseDeDatos obBD) {
@@ -99,6 +102,7 @@ public class Controlador implements ActionListener {
         this.obL = new Listas();
         obBD = new BaseDeDatos();
         obCBD = new ConexionMysql();
+        obPdf = new ArchPdf();
         rs = null;
         frmP.getEscritorio().setSize(500, 500);
         frmP.setSize(500, 500);
@@ -489,45 +493,18 @@ public class Controlador implements ActionListener {
                             */
                             rs = obBD.consultar("nombre", "obras_actuales", " WHERE tipo = " + "'" + frmV.getCbTipoVenta().getSelectedItem()+ "'" + " AND "
                                     + "precio >0 ");
+                            ArrayList <Object> listaNom = new ArrayList<Object>();
                             while (rs.next()){
-                                frmV.getCbNombreVenta().addItem(rs.getString(1));
+                                listaNom.add(rs.getString(1));
+                            }
+                            for (int i = 0; i< listaNom.size(); i++){
+                                frmV.getCbNombreVenta().addItem(listaNom.get(i).toString());
                             }
                             frmV.getCbNombreVenta().setSelectedItem(null);
                         } catch (SQLException ex) {
                             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        
-                       /* switch (frmV.getCbTipoVenta().getSelectedIndex()) {
-                            case 0:
-                                frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
-                                for (int i = 0; i < obL.getObO().size(); i++) {
-                                    if (obL.getObO().get(i) instanceof Pintura && obL.getObO().get(i).getPrecio() != 0) {
-                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
-                                    }
-                                }
-                                
-                                break;
-
-                            case 1:
-                                frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
-                                for (int i = 0; i < obL.getObO().size(); i++) {
-                                    if (obL.getObO().get(i) instanceof Escultura && obL.getObO().get(i).getPrecio() != 0) {
-                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
-                                    }
-                                }
-                                frmV.getCbNombreVenta().setSelectedItem(null);
-                                break;
-
-                            case 2:
-                                frmV.getCbNombreVenta().removeAllItems(); // Si no se borran los items se van agrupando a medida que se cambia de tipo de obra
-                                for (int i = 0; i < obL.getObO().size(); i++) {
-                                    if (obL.getObO().get(i) instanceof ObLapiz && obL.getObO().get(i).getPrecio() != 0) {
-                                        frmV.getCbNombreVenta().addItem(obL.getObO().get(i).getNom());
-                                    }
-                                }
-                                frmV.getCbNombreVenta().setSelectedItem(null);
-                                break;
-                        }*/
+                       
                     }
                 });
 
@@ -570,6 +547,20 @@ public class Controlador implements ActionListener {
                             if (JOptionPane.showConfirmDialog(frmP, "Registrar venta? \n" + "Tipo de obra: " + frmV.getCbTipoVenta().getSelectedItem()
                                     + "\n" + "Nombre de obra: " + frmV.getCbNombreVenta().getSelectedItem() + "\n" + "Cliente: " + frmV.getCbCliVenta().getSelectedItem()
                                     + "\n" + "Precio total a pagar: " + frmV.getTxtTotalVenta().getText(), "Registrar Venta", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                                try {
+                                    rs = obBD.consultar("*", "obras_actuales", " WHERE nombre = " + "'" + frmV.getCbNombreVenta().getSelectedItem() + "'"
+                                            + " AND tipo = " + "'" + frmV.getCbTipoVenta().getSelectedItem() + "'");
+                                    while(rs.next()){                                    
+                                    obBD.insertar("obras_vendidas", "'" + rs.getString(1) + "'" + "," + "'" + rs.getString(2) + "'" + "," + "'" 
+                                            + rs.getString(3) + "'" + "," + "'" + rs.getString(4) + "'" + "," + rs.getLong(5) + "," 
+                                            + rs.getLong(6) + "," + rs.getLong(7));
+                                    obBD.eliminar("obras_actuales", " WHERE codigo = " + "'" + rs.getString("codigo") + "'");
+                                    Random rand = new Random();
+                                    obPdf.crear_Factura(rs, rand.nextInt(10000));
+                                    }
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 switch (frmV.getCbTipoVenta().getSelectedIndex()) {
                                     case 0:
                                         for (int i = 0; i < obL.getObO().size(); i++) {
@@ -604,33 +595,27 @@ public class Controlador implements ActionListener {
                     }
                 }
                 );
-            } ///BORRARR//
-            else if (e.getSource() == frmP.getMnuReporte()) {
-                String datos = "Registros clientes: ";
-                for (int i = 0; i < obL.getObC().size(); i++) {
-                    datos += obL.getObC().get(i).getNom() + "pago: " + obL.getObC().get(i).getPago() + "\n";
-                }
-                datos += "\n\n\n";
-
-                datos += "Registros artistas: ";
-                for (int i = 0; i < obL.getObA().size(); i++) {
-                    datos += obL.getObA().get(i).getNom() + "\n";
-                }
-                datos += "\n\n\n";
-
-                datos += "Registros Obras: ";
-                for (int i = 0; i < obL.getObO().size(); i++) {
-                    datos += obL.getObO().get(i).getNom() + "\n";
-                }
-                datos += "\n\n\n";
-
-                System.out.println(datos);
             } else if (e.getSource() == frmP.getMnuTabObras()) {
                 frmLO = new FrmListaObras();
                 try {
                     ResultSet rs = obBD.consultar("*", "obras_registradas", "");
                     while (rs.next()) {
                         frmLO.getModelo1().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
+                            rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
+                    }
+                    rs = obBD.consultar("*", "obras_vendidas", "");
+                    while(rs.next()){
+                        frmLO.getModelo3().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
+                            rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
+                    }
+                    rs = obBD.consultar("*", "obras_actuales", " WHERE precio > 0");
+                    while(rs.next()){
+                        frmLO.getModelo2().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
+                            rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
+                    }
+                     rs = obBD.consultar("*", "obras_actuales", " WHERE precio = 0");
+                    while(rs.next()){
+                        frmLO.getModelo4().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
                             rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
                     }
                 } catch (SQLException ex) {

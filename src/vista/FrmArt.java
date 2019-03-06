@@ -38,14 +38,6 @@ public class FrmArt extends javax.swing.JInternalFrame {
         this.btnCancelArt = btnCancelArt;
     }
 
-    public JTextArea getTxaArtista() {
-        return txaArtista;
-    }
-
-    public void setTxaArtista(JTextArea txaArtista) {
-        this.txaArtista = txaArtista;
-    }
-
     public JTextField getTxtCiudArt() {
         return txtCiudArt;
     }
@@ -143,8 +135,6 @@ public class FrmArt extends javax.swing.JInternalFrame {
         jPanel27 = new javax.swing.JPanel();
         btnCancelArt = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaArtista = new javax.swing.JTextArea();
 
         setResizable(true);
         setTitle("Registro: Artista");
@@ -259,25 +249,15 @@ public class FrmArt extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        txaArtista.setColumns(20);
-        txaArtista.setRows(5);
-        jScrollPane1.setViewportView(txaArtista);
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 458, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 118, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
@@ -332,8 +312,6 @@ public class FrmArt extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txaArtista;
     private javax.swing.JTextField txtCiudArt;
     private javax.swing.JTextField txtDirArt;
     private javax.swing.JTextField txtIdArt;
