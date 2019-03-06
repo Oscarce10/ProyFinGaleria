@@ -109,15 +109,20 @@ public class FrmPpal extends javax.swing.JFrame {
 
         jMenu4.setText("Tabla");
 
-        mnuTabArtistas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
+        mnuTabArtistas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         mnuTabArtistas.setText("Artistas");
+        mnuTabArtistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuTabArtistasActionPerformed(evt);
+            }
+        });
         jMenu4.add(mnuTabArtistas);
 
-        mnuTabClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        mnuTabClientes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         mnuTabClientes.setText("Clientes");
         jMenu4.add(mnuTabClientes);
 
-        mnuTabObras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK));
+        mnuTabObras.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         mnuTabObras.setText("Obras");
         jMenu4.add(mnuTabObras);
 
@@ -144,6 +149,10 @@ public class FrmPpal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mnuTabArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuTabArtistasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuTabArtistasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

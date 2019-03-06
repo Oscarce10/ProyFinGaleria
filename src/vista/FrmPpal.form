@@ -80,15 +80,18 @@
                 <MenuItem class="javax.swing.JMenuItem" name="mnuTabArtistas">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="Shift+A"/>
+                      <KeyStroke key="Ctrl+A"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Artistas"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuTabArtistasActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mnuTabClientes">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="Shift+C"/>
+                      <KeyStroke key="Ctrl+C"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Clientes"/>
                   </Properties>
@@ -96,7 +99,7 @@
                 <MenuItem class="javax.swing.JMenuItem" name="mnuTabObras">
                   <Properties>
                     <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                      <KeyStroke key="Shift+O"/>
+                      <KeyStroke key="Ctrl+O"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Obras"/>
                   </Properties>

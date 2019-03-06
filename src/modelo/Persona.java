@@ -127,7 +127,7 @@ public abstract class Persona {
             throw new CampoVacioException("Telefono");
         }
         for (int i = 0; i < tel.length(); i++) {
-                if (tel.charAt(i) == ' ' || tel.charAt(i) <=48 ||  tel.charAt(i)>58) {
+                if (tel.charAt(i) == ' ' || tel.charAt(i) <48 ||  tel.charAt(i)>58) {
                         throw new RangoValorException(1, "Telefono");
                     }
                 }

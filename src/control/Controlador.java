@@ -70,7 +70,7 @@ public class Controlador implements ActionListener {
     private frmListaCli frmLC;
     private FrmListArt frmLA;
     private ArchPdf obPdf;
-    
+    private int contadorRep;
 
     public Controlador(FrmPpal frmP, FrmArt frmA, FrmCli frmC, FrmObra FrmO, FrmVenta FrmV, Artista obA, Cliente obC, Escultura obE, Listas obL, ObLapiz obOL, Pintura obOP, BaseDeDatos obBD) {
         this.frmP = frmP;
@@ -85,6 +85,7 @@ public class Controlador implements ActionListener {
         this.obOL = obOL;
         this.obOP = obOP;
         this.obBD = obBD;
+        contadorRep = 1;
         frmP.getEscritorio().setSize(540, 600);
         frmP.getMnuArtista().addActionListener(this);
         frmP.getMnuCliente().addActionListener(this);
@@ -103,6 +104,7 @@ public class Controlador implements ActionListener {
         obBD = new BaseDeDatos();
         obCBD = new ConexionMysql();
         obPdf = new ArchPdf();
+        contadorRep = 1;
         rs = null;
         frmP.getEscritorio().setSize(500, 500);
         frmP.setSize(500, 500);
@@ -224,7 +226,7 @@ public class Controlador implements ActionListener {
                 registrados solo como Artista y si se encuentra alguno, se toma su nombre y se inserta en el cb
                  */
                 rs = obBD.consultar("nombre", "artista", "");
-                while(rs.next()){
+                while (rs.next()) {
                     frmO.getCbArtistaObra().addItem(rs.getString(1));
                 }
                 frmO.getCbArtistaObra().setSelectedIndex(-1); //Deja el combobox en seleccion nula por defecto
@@ -249,26 +251,27 @@ public class Controlador implements ActionListener {
                     }
                 });
                 frmO.getBtnimagen().addActionListener(new ActionListener() {
-            File archivo ;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            int resultado;
-                buscarimagen buscador= new buscarimagen();
-                FileNameExtensionFilter formato =new FileNameExtensionFilter("JPG,PNG,GIF","jpg","png","gif");
-                buscador.jFileChooser1.setFileFilter(formato);
-                resultado = buscador.jFileChooser1.showOpenDialog(null);
-                if(JFileChooser.APPROVE_OPTION ==resultado ){
-                    archivo = buscador.jFileChooser1.getSelectedFile();
-                    frmO.getTxturl().setText(archivo.getAbsolutePath());
-                    try{
-                    ImageIcon imgicon = new ImageIcon(archivo.toString());
-                    Icon icono =new ImageIcon(imgicon.getImage().getScaledInstance(frmO.getJlbimagen().getWidth(),frmO.getJlbimagen().getHeight(), Image.SCALE_DEFAULT));
-                frmO.getJlbimagen().setIcon(icono);
-                    }catch(Exception ex){
-                        JOptionPane.showMessageDialog(null, "erroe"+ex);
+                    File archivo;
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int resultado;
+                        buscarimagen buscador = new buscarimagen();
+                        FileNameExtensionFilter formato = new FileNameExtensionFilter("JPG,PNG,GIF", "jpg", "png", "gif");
+                        buscador.jFileChooser1.setFileFilter(formato);
+                        resultado = buscador.jFileChooser1.showOpenDialog(null);
+                        if (JFileChooser.APPROVE_OPTION == resultado) {
+                            archivo = buscador.jFileChooser1.getSelectedFile();
+                            frmO.getTxturl().setText(archivo.getAbsolutePath());
+                            try {
+                                ImageIcon imgicon = new ImageIcon(archivo.toString());
+                                Icon icono = new ImageIcon(imgicon.getImage().getScaledInstance(frmO.getJlbimagen().getWidth(), frmO.getJlbimagen().getHeight(), Image.SCALE_DEFAULT));
+                                frmO.getJlbimagen().setIcon(icono);
+                            } catch (Exception ex) {
+                                JOptionPane.showMessageDialog(null, "erroe" + ex);
+                            }
+                        }
                     }
-                }
-            }
                 });
                 /*
                 En tal caso que no exista el artista de la obra que se va a ingresar, existe la opcion de registrar artista al final del formulario
@@ -323,8 +326,8 @@ public class Controlador implements ActionListener {
                                 Por ultimo el objeto nuevo, ahora con la informacion del artista seleccionado en el combobox sera añadido a tipoObra.Artista
                                  */
                                 Artista ob = new Artista();
-                                rs = obBD.consultar("*", "artista", " WHERE nombre = "+"'"+frmO.getCbArtistaObra().getSelectedItem()+"'");
-                                while(rs.next()){
+                                rs = obBD.consultar("*", "artista", " WHERE nombre = " + "'" + frmO.getCbArtistaObra().getSelectedItem() + "'");
+                                while (rs.next()) {
                                     ob.setId(rs.getString(1));
                                     ob.setNom(rs.getString(2));
                                     ob.setTel(rs.getString(3));
@@ -362,7 +365,7 @@ public class Controlador implements ActionListener {
                                         obOP.setArtista(ob);
                                         if (precio != 1) {
                                             obOP.setPrecio(precio);
-                                            
+
                                             //Se pide confirmacion para crear la pintura, en caso afirmativo se agrega a la lista de Obras y se avisa
                                             if (JOptionPane.showConfirmDialog(frmP, "Desea agregar pintura? \n" + obOP.toString(), "Agregar Pintura", JOptionPane.YES_NO_OPTION)
                                                     == JOptionPane.YES_OPTION) {
@@ -394,11 +397,11 @@ public class Controlador implements ActionListener {
                                                     == JOptionPane.YES_OPTION) {
                                                 obL.getObO().add(obE);
                                                 obBD.insertar("obras_registradas", "'" + obE.getCod() + "'" + "," + "'" + obE.getNom() + "'" + ","
-                                                        + "'" + "Escultura" + "'" + "," + "'" + obE.getArtista().getNom() + "'" + "," + obE.getPrecio() + "," 
-                                                        + obE.impuesto() + "," + (obE.getPrecio()+obE.impuesto()));
+                                                        + "'" + "Escultura" + "'" + "," + "'" + obE.getArtista().getNom() + "'" + "," + obE.getPrecio() + ","
+                                                        + obE.impuesto() + "," + (obE.getPrecio() + obE.impuesto()));
                                                 obBD.insertar("obras_actuales", "'" + obE.getCod() + "'" + "," + "'" + obE.getNom() + "'" + ","
-                                                        + "'" + "Escultura" + "'" + "," + "'" + obE.getArtista().getNom() + "'" + "," + obE.getPrecio() + "," 
-                                                        + obE.impuesto() + "," + (obE.getPrecio()+obE.impuesto()));
+                                                        + "'" + "Escultura" + "'" + "," + "'" + obE.getArtista().getNom() + "'" + "," + obE.getPrecio() + ","
+                                                        + obE.impuesto() + "," + (obE.getPrecio() + obE.impuesto()));
                                                 JOptionPane.showMessageDialog(frmP, "Obra agregada satisfactoriamente");
                                                 res = true;
 
@@ -421,11 +424,11 @@ public class Controlador implements ActionListener {
                                                     == JOptionPane.YES_OPTION) {
                                                 obL.getObO().add(obOL);
                                                 obBD.insertar("obras_registradas", "'" + obOL.getCod() + "'" + "," + "'" + obOL.getNom() + "'" + ","
-                                                        + "'" + "obra lapiz" + "'" + "," + "'" + obOL.getArtista().getNom() + "'" + "," + obOL.getPrecio() + "," 
-                                                        + obOL.impuesto() + "," + (obOL.getPrecio()+obOL.impuesto()));
+                                                        + "'" + "obra lapiz" + "'" + "," + "'" + obOL.getArtista().getNom() + "'" + "," + obOL.getPrecio() + ","
+                                                        + obOL.impuesto() + "," + (obOL.getPrecio() + obOL.impuesto()));
                                                 obBD.insertar("obras_actuales", "'" + obOL.getCod() + "'" + "," + "'" + obOL.getNom() + "'" + ","
-                                                        + "'" + "obra lapiz" + "'" + "," + "'" + obOL.getArtista().getNom() + "'" + "," + obOL.getPrecio() + "," 
-                                                        + obOL.impuesto() + "," + (obOL.getPrecio()+obOL.impuesto()));
+                                                        + "'" + "obra lapiz" + "'" + "," + "'" + obOL.getArtista().getNom() + "'" + "," + obOL.getPrecio() + ","
+                                                        + obOL.impuesto() + "," + (obOL.getPrecio() + obOL.impuesto()));
                                                 JOptionPane.showMessageDialog(frmP, "Obra agregada satisfactoriamente");
                                                 res = true;
 
@@ -471,11 +474,11 @@ public class Controlador implements ActionListener {
                 frmV.setVisible(true);
                 //Agregar clientes al cb de cliente
                 rs = obBD.consultar("nombre", "cliente", " WHERE pago = 5000");
-                while(rs.next()){
+                while (rs.next()) {
                     frmV.getCbCliVenta().addItem(rs.getString(1));
                 }
                 frmV.getCbCliVenta().setSelectedItem(null);
-                
+
                 //para poder saber cual cliente fue seleccionado
                 frmV.getCbCliVenta().addActionListener(this);
 
@@ -490,21 +493,21 @@ public class Controlador implements ActionListener {
                             Primeramente con cualquier opcion se deja el cb en blanco y luego, se recorre la lista de obras verificando que
                             corresponda al tipo de objeto seleccionado como tipo de obra a vender y seguido del precio de esta sea diferente
                             de cero, porque si el valor es cero, significa que la obra no se puede vender
-                            */
-                            rs = obBD.consultar("nombre", "obras_actuales", " WHERE tipo = " + "'" + frmV.getCbTipoVenta().getSelectedItem()+ "'" + " AND "
+                             */
+                            rs = obBD.consultar("nombre", "obras_actuales", " WHERE tipo = " + "'" + frmV.getCbTipoVenta().getSelectedItem() + "'" + " AND "
                                     + "precio >0 ");
-                            ArrayList <Object> listaNom = new ArrayList<Object>();
-                            while (rs.next()){
+                            ArrayList<Object> listaNom = new ArrayList<Object>();
+                            while (rs.next()) {
                                 listaNom.add(rs.getString(1));
                             }
-                            for (int i = 0; i< listaNom.size(); i++){
+                            for (int i = 0; i < listaNom.size(); i++) {
                                 frmV.getCbNombreVenta().addItem(listaNom.get(i).toString());
                             }
                             frmV.getCbNombreVenta().setSelectedItem(null);
                         } catch (SQLException ex) {
                             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                       
+
                     }
                 });
 
@@ -518,12 +521,12 @@ public class Controlador implements ActionListener {
                             frmV.getTxtTotalVenta().setText("");
                             rs = obBD.consultar("precio, impuesto, total", "obras_actuales", " WHERE nombre = " + "'" + frmV.getCbNombreVenta().getSelectedItem()
                                     + "'");
-                            while (rs.next()){
-                                frmV.getTxtPrecioVenta().setText(""+rs.getLong(1));
-                                frmV.getTxtImpVenta().setText(""+rs.getLong(2));
-                                frmV.getTxtTotalVenta().setText(""+rs.getLong(3));
+                            while (rs.next()) {
+                                frmV.getTxtPrecioVenta().setText("" + rs.getLong(1));
+                                frmV.getTxtImpVenta().setText("" + rs.getLong(2));
+                                frmV.getTxtTotalVenta().setText("" + rs.getLong(3));
                             }
-           
+
                         } catch (SQLException ex) {
                             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -550,13 +553,13 @@ public class Controlador implements ActionListener {
                                 try {
                                     rs = obBD.consultar("*", "obras_actuales", " WHERE nombre = " + "'" + frmV.getCbNombreVenta().getSelectedItem() + "'"
                                             + " AND tipo = " + "'" + frmV.getCbTipoVenta().getSelectedItem() + "'");
-                                    while(rs.next()){                                    
-                                    obBD.insertar("obras_vendidas", "'" + rs.getString(1) + "'" + "," + "'" + rs.getString(2) + "'" + "," + "'" 
-                                            + rs.getString(3) + "'" + "," + "'" + rs.getString(4) + "'" + "," + rs.getLong(5) + "," 
-                                            + rs.getLong(6) + "," + rs.getLong(7));
-                                    obBD.eliminar("obras_actuales", " WHERE codigo = " + "'" + rs.getString("codigo") + "'");
-                                    Random rand = new Random();
-                                    obPdf.crear_Factura(rs, rand.nextInt(10000));
+                                    while (rs.next()) {
+                                        obBD.insertar("obras_vendidas", "'" + rs.getString(1) + "'" + "," + "'" + rs.getString(2) + "'" + "," + "'"
+                                                + rs.getString(3) + "'" + "," + "'" + rs.getString(4) + "'" + "," + rs.getLong(5) + ","
+                                                + rs.getLong(6) + "," + rs.getLong(7));
+                                        obBD.eliminar("obras_actuales", " WHERE codigo = " + "'" + rs.getString("codigo") + "'");
+                                        Random rand = new Random();
+                                        obPdf.crear_Factura(rs, rand.nextInt(10000));
                                     }
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -604,17 +607,17 @@ public class Controlador implements ActionListener {
                             rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
                     }
                     rs = obBD.consultar("*", "obras_vendidas", "");
-                    while(rs.next()){
+                    while (rs.next()) {
                         frmLO.getModelo3().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
                             rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
                     }
                     rs = obBD.consultar("*", "obras_actuales", " WHERE precio > 0");
-                    while(rs.next()){
+                    while (rs.next()) {
                         frmLO.getModelo2().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
                             rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
                     }
-                     rs = obBD.consultar("*", "obras_actuales", " WHERE precio = 0");
-                    while(rs.next()){
+                    rs = obBD.consultar("*", "obras_actuales", " WHERE precio = 0");
+                    while (rs.next()) {
                         frmLO.getModelo4().addRow(new Object[]{rs.getString("tipo"), rs.getString("codigo"),
                             rs.getString("nombre"), rs.getLong("precio"), rs.getString("nom_artista")});
                     }
@@ -632,13 +635,12 @@ public class Controlador implements ActionListener {
                         frmLO.dispose();
                     }
                 });
-            }
-            else if (e.getSource() == frmP.getMnuTabClientes()){
+            } else if (e.getSource() == frmP.getMnuTabClientes()) {
                 frmLC = new frmListaCli();
                 rs = obBD.consultar("*", "cliente", "");
-                while(rs.next()){
+                while (rs.next()) {
                     frmLC.getTblCli().addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3),
-                    rs.getLong(4)});
+                        rs.getLong(4)});
                 }
                 frmP.getEscritorio().add(frmLC);
                 frmLC.setMaximum(true);
@@ -649,14 +651,12 @@ public class Controlador implements ActionListener {
                         frmLC.dispose();
                     }
                 });
-            }
-            
-            else if (e.getSource() == frmP.getMnuTabArtistas()){
+            } else if (e.getSource() == frmP.getMnuTabArtistas()) {
                 frmLA = new FrmListArt();
                 rs = obBD.consultar("*", "artista", "");
-                while(rs.next()){
+                while (rs.next()) {
                     frmLA.getTblArt().addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3),
-                    rs.getString(4), rs.getString(5)});
+                        rs.getString(4), rs.getString(5)});
                 }
                 frmP.getEscritorio().add(frmLA);
                 frmLA.setMaximum(true);
@@ -665,8 +665,14 @@ public class Controlador implements ActionListener {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         frmLA.dispose();
-                    };
-                });
+                    }
+                ;
+            }  );
+            }
+            else if (e.getSource() == frmP.getMnuReporte()) {
+                rs = obBD.consultar("*", "obras_vendidas", "");
+                obPdf.reporte(rs, contadorRep);
+                contadorRep++;
             }
 
         } catch (PropertyVetoException ex) {

@@ -39,12 +39,13 @@ public class ArchPdf {
     private String ruta_destino;
 
     public ArchPdf() {
-        ruta_destino = "src/facturas/";
+        ruta_destino = "";
     }
 
     /* metodo que hace uso de la clase itext para manipular archivos PDF*/
     public void crear_Factura(ResultSet txt, int numFac) throws SQLException {
         try {
+            ruta_destino = "src/facturas/";
             // se crea instancia del documento
             Document mipdf = new Document();
             // se establece una instancia a un documento pdf
@@ -54,18 +55,18 @@ public class ArchPdf {
             /*mipdf.addAuthor(a); // se añade el autor del documento
                 mipdf.addSubject(s); //se añade el asunto del documento
                 mipdf.addKeywords(k); //Se agregan palabras claves*/
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
-            mipdf.add(new Paragraph("GALERIA DE ARTE ARTBOG"+"\n"+"FACTURA DE VENTA No. " + numFac + "\n" + "Bogota, " +dtf.format(now)));
-            mipdf.add(new Paragraph("Codigo: " + txt.getString(1) + "\n" +
-            "Nombre: " + txt.getString(2) + "\n" + "Tipo: " + txt.getString(3) + "\n" +
-                    "Artista: " + txt.getString(4) + "\n" + "Subtotal: " + txt.getLong(5) + "\n" +
-                    "IVA: " + txt.getLong(6) + "\n" + "Total a pagar: " + txt.getLong(7)));
+            mipdf.add(new Paragraph("\t\tGALERIA DE ARTE ARTBOG" + "\n" + "FACTURA DE VENTA No. " + numFac + "\n" + "Bogota, " + dtf.format(now)));
+            mipdf.add(new Paragraph("Codigo: " + txt.getString(1) + "\n"
+                    + "Nombre: " + txt.getString(2) + "\n" + "Tipo: " + txt.getString(3) + "\n"
+                    + "Artista: " + txt.getString(4) + "\n" + "Subtotal: " + txt.getLong(5) + "\n"
+                    + "IVA: " + txt.getLong(6) + "\n" + "\t" + "---------------------------" + "\n" + "Total a pagar: " + txt.getLong(7)));
             // se añade el contendio del PDF
             mipdf.close(); //se cierra el PDF&
-            
+
             try {
-                 Desktop.getDesktop().open(new File(this.ruta_destino + "Factura " + numFac + ".pdf"));
+                Desktop.getDesktop().open(new File(this.ruta_destino + "Factura " + numFac + ".pdf"));
             } catch (IOException ex) {
                 Logger.getLogger(ArchPdf.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -77,21 +78,32 @@ public class ArchPdf {
         }
     }
 
-    public void crear_PDF() {
+    public void reporte(ResultSet txt, int r) throws SQLException {
         String d = "";
         //abre ventana de dialogo "guardar"
         //si destino es diferente de null
         try {
+            ruta_destino = "src/reportes/";
             // se crea instancia del documento
             Document mipdf = new Document();
             // se establece una instancia a un documento pdf
-            PdfWriter.getInstance(mipdf, new FileOutputStream(this.ruta_destino + "Factura_general.pdf"));
+            PdfWriter.getInstance(mipdf, new FileOutputStream(this.ruta_destino + "reporte_" + r + ".pdf"));
             mipdf.open();// se abre el documento
-            mipdf.addTitle("Datos de las publicaciones"); // se añade el titulo
+            mipdf.addTitle("Reporte de ventas No. " + r); // se añade el titulo
             /*mipdf.addAuthor(a); // se añade el autor del documento
                 mipdf.addSubject(s); //se añade el asunto del documento
                 mipdf.addKeywords(k); //Se agregan palabras claves*/
-            mipdf.add(new Paragraph("" + d + "\n"));
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+            LocalDateTime now = LocalDateTime.now();
+            mipdf.add(new Paragraph("REPORTE DE VENTAS AL " + dtf.format(now) + "\n"));
+            mipdf.add(new Paragraph("Tipo               Codigo              Nombre                  Precio"));
+            long tot = 0;
+            while (txt.next()) {
+                mipdf.add(new Paragraph(txt.getString(3) + "          " + txt.getString(1) + "            " + txt.getString(4) + "                " + txt.getLong(7)));
+                tot+=txt.getLong(7);
+            }
+            mipdf.add(new Paragraph("--------------------------------------------------------------------------"+"\n"));
+            mipdf.add(new Paragraph("Total Ventas                                               "+tot));
             // se añade el contendio del PDF
             mipdf.close(); //se cierra el PDF&
             JOptionPane.showMessageDialog(null, "Documento PDF creado");

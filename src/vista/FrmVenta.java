@@ -63,14 +63,6 @@ public class FrmVenta extends javax.swing.JInternalFrame {
         this.cbTipoVenta = cbTipoVenta;
     }
 
-    public JTextArea getTxaVenta() {
-        return txaVenta;
-    }
-
-    public void setTxaVenta(JTextArea txaVenta) {
-        this.txaVenta = txaVenta;
-    }
-
     public JTextField getTxtImpVenta() {
         return txtImpVenta;
     }
@@ -106,9 +98,6 @@ public class FrmVenta extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel17 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaVenta = new javax.swing.JTextArea();
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -162,29 +151,6 @@ public class FrmVenta extends javax.swing.JInternalFrame {
         btnRegVenta = new javax.swing.JButton();
         jPanel60 = new javax.swing.JPanel();
         btnCancelVenta = new javax.swing.JButton();
-
-        txaVenta.setColumns(20);
-        txaVenta.setRows(5);
-        jScrollPane1.setViewportView(txaVenta);
-
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanel17, java.awt.BorderLayout.PAGE_END);
 
         jPanel18.setLayout(new java.awt.GridLayout(7, 2));
 
@@ -350,7 +316,6 @@ public class FrmVenta extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
@@ -382,8 +347,6 @@ public class FrmVenta extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txaVenta;
     private javax.swing.JTextField txtImpVenta;
     private javax.swing.JTextField txtPrecioVenta;
     private javax.swing.JTextField txtTotalVenta;
