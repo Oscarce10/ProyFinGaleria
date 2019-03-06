@@ -202,7 +202,7 @@ public class FrmVenta extends javax.swing.JInternalFrame {
         jPanel20.add(jPanel3, java.awt.BorderLayout.LINE_START);
         jPanel20.add(jPanel4, java.awt.BorderLayout.LINE_END);
 
-        cbTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pintura", "Escultura", "Obra a lapiz" }));
+        cbTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pintura", "Escultura", "obra lapiz" }));
         cbTipoVenta.setSelectedIndex(-1);
         jPanel20.add(cbTipoVenta, java.awt.BorderLayout.CENTER);
 

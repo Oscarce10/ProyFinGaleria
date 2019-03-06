@@ -30,15 +30,19 @@ public class BaseDeDatos {
     }
 
     public void insertar(String tabla, String valor) throws SQLException {
-        System.out.println(valor);
         String sql = "INSERT INTO " + tabla + " values(" + valor + ");";
-        System.out.println(sql);
         sentencia = con.getConexion().createStatement();
+        System.out.println(sql);
         sentencia.executeUpdate(sql);
     }
 
-    public void Consultar() {
-        ResultSet tabla = con.consuta("SELECT * FROM `autor`");
+    public ResultSet consultar(String columnas, String tablas, String where) throws SQLException {
+        String sql = "SELECT "+columnas+" FROM "+tablas+where+";";
+        sentencia = con.getConexion().createStatement();
+        System.out.println(sql);
+        
+        resultado = sentencia.executeQuery(sql);
+        return resultado;
     }
 
 }

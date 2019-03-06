@@ -37,12 +37,9 @@ import java.util.concurrent.Executor;
 public class ConexionMysql {
 
     private Connection conexion;
-    private String msj;
-    private ResultSet resultado;
 
     public ConexionMysql() {
         this.conexion = null;
-        this.msj = "";
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String ruta = "jdbc:mysql://localhost/galeria";
@@ -63,34 +60,6 @@ public class ConexionMysql {
     public void setConexion(Connection conexion) {
         this.conexion = conexion;
     }
-
-    public String getMsj() {
-        return msj;
-    }
-
-    public void setMsj(String msj) {
-        this.msj = msj;
-    }
-
-    public void ejecuta(String Sql){
-        try {
-            conexion.createStatement().executeUpdate(Sql);
-            conexion.close();
-        } catch (SQLException ex) {
-            System.out.println("ejecuta");
-            System.out.println(ex.getMessage());
-        }
-    }
-
-    public ResultSet consuta(String Consulta) {
-        resultado = null;
-        try {
-            resultado = conexion.createStatement().executeQuery(Consulta);
-
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return resultado;
-    }
-
+    
+    
 }
