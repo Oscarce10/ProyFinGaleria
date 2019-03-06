@@ -6,6 +6,8 @@
 package control;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+import java.awt.Image;
+import java.awt.PopupMenu;
 import java.awt.event.ActionEvent;
 import vista.FrmArt;
 import vista.FrmCli;
@@ -17,10 +19,15 @@ import java.beans.PropertyVetoException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import modelo.Artista;
 import modelo.BaseDeDatos;
 import modelo.CampoVacioException;
@@ -35,6 +42,7 @@ import modelo.RangoValorException;
 import vista.FrmListaObras;
 import vista.frmListaCli;
 import vista.FrmListArt;
+import vista.buscarimagen;
 
 /**
  *
@@ -235,6 +243,28 @@ public class Controlador implements ActionListener {
                                 break;
                         }
                     }
+                });
+                frmO.getBtnimagen().addActionListener(new ActionListener() {
+            File archivo ;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            int resultado;
+                buscarimagen buscador= new buscarimagen();
+                FileNameExtensionFilter formato =new FileNameExtensionFilter("JPG,PNG,GIF","jpg","png","gif");
+                buscador.jFileChooser1.setFileFilter(formato);
+                resultado = buscador.jFileChooser1.showOpenDialog(null);
+                if(JFileChooser.APPROVE_OPTION ==resultado ){
+                    archivo = buscador.jFileChooser1.getSelectedFile();
+                    frmO.getTxturl().setText(archivo.getAbsolutePath());
+                    try{
+                    ImageIcon imgicon = new ImageIcon(archivo.toString());
+                    Icon icono =new ImageIcon(imgicon.getImage().getScaledInstance(frmO.getJlbimagen().getWidth(),frmO.getJlbimagen().getHeight(), Image.SCALE_DEFAULT));
+                frmO.getJlbimagen().setIcon(icono);
+                    }catch(Exception ex){
+                        JOptionPane.showMessageDialog(null, "erroe"+ex);
+                    }
+                }
+            }
                 });
                 /*
                 En tal caso que no exista el artista de la obra que se va a ingresar, existe la opcion de registrar artista al final del formulario
@@ -611,6 +641,12 @@ public class Controlador implements ActionListener {
                 frmP.getEscritorio().add(frmLO);
                 frmLO.setMaximum(true);
                 frmLO.setVisible(true);
+                frmLO.getBtnCloseTab().addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        frmLO.dispose();
+                    }
+                });
             }
             else if (e.getSource() == frmP.getMnuTabClientes()){
                 frmLC = new frmListaCli();

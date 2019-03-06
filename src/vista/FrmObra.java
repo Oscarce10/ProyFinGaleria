@@ -10,6 +10,9 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -30,6 +33,22 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
     public void setBtnAddArtObra(JButton btnAddArtObra) {
         this.btnAddArtObra = btnAddArtObra;
+    }
+
+    public JButton getBtnimagen() {
+        return btnimagen;
+    }
+
+    public void setBtnimagen(JButton btnimagen) {
+        this.btnimagen = btnimagen;
+    }
+
+    public JTextField getTxturl() {
+        return txturl;
+    }
+
+    public void setTxturl(JTextField txturl) {
+        this.txturl = txturl;
     }
 
     public JButton getBtnAddObra() {
@@ -72,13 +91,15 @@ public class FrmObra extends javax.swing.JInternalFrame {
         this.cbTipoObra = cbTipoObra;
     }
 
-    public JTextArea getTxaObra() {
-        return txaObra;
+    public JLabel getJlbimagen() {
+        return jlbimagen;
     }
 
-    public void setTxaObra(JTextArea txaObra) {
-        this.txaObra = txaObra;
+    public void setJlbimagen(JLabel jlbimagen) {
+        this.jlbimagen = jlbimagen;
     }
+
+   
 
     public JTextField getTxtCodObra() {
         return txtCodObra;
@@ -180,8 +201,17 @@ public class FrmObra extends javax.swing.JInternalFrame {
         btnCancelObra = new javax.swing.JButton();
         jPanel36 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaObra = new javax.swing.JTextArea();
+        jPanel25 = new javax.swing.JPanel();
+        jlbimagen = new javax.swing.JLabel();
+        jPanel31 = new javax.swing.JPanel();
+        jPanel33 = new javax.swing.JPanel();
+        txturl = new javax.swing.JTextField();
+        jPanel34 = new javax.swing.JPanel();
+        jPanel39 = new javax.swing.JPanel();
+        jPanel41 = new javax.swing.JPanel();
+        jPanel43 = new javax.swing.JPanel();
+        jPanel32 = new javax.swing.JPanel();
+        btnimagen = new javax.swing.JButton();
         jPanel27 = new javax.swing.JPanel();
         jPanel37 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -314,26 +344,37 @@ public class FrmObra extends javax.swing.JInternalFrame {
 
         jPanel36.setLayout(new java.awt.BorderLayout());
 
-        txaObra.setColumns(20);
-        txaObra.setRows(5);
-        jScrollPane1.setViewportView(txaObra);
+        jPanel17.setLayout(new java.awt.GridLayout(1, 2));
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel25.setLayout(new java.awt.GridLayout(1, 3));
+        jPanel25.add(jlbimagen);
+
+        jPanel31.setLayout(new java.awt.GridLayout(2, 0));
+
+        jPanel33.setLayout(new java.awt.BorderLayout());
+
+        txturl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txturlActionPerformed(evt);
+            }
+        });
+        jPanel33.add(txturl, java.awt.BorderLayout.CENTER);
+        txturl.setEditable(false);
+        jPanel33.add(jPanel34, java.awt.BorderLayout.PAGE_START);
+        jPanel33.add(jPanel39, java.awt.BorderLayout.PAGE_END);
+        jPanel33.add(jPanel41, java.awt.BorderLayout.LINE_START);
+        jPanel33.add(jPanel43, java.awt.BorderLayout.LINE_END);
+
+        jPanel31.add(jPanel33);
+
+        btnimagen.setText("buscar imagen");
+        jPanel32.add(btnimagen);
+
+        jPanel31.add(jPanel32);
+
+        jPanel25.add(jPanel31);
+
+        jPanel17.add(jPanel25);
 
         jPanel36.add(jPanel17, java.awt.BorderLayout.PAGE_START);
 
@@ -368,11 +409,16 @@ public class FrmObra extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddArtObraActionPerformed
 
+    private void txturlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txturlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txturlActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddArtObra;
     private javax.swing.JButton btnAddObra;
     private javax.swing.JButton btnCancelObra;
+    private javax.swing.JButton btnimagen;
     private javax.swing.JComboBox<String> cbArtistaObra;
     private javax.swing.JComboBox<String> cbOpcVentaObra;
     private javax.swing.JComboBox<String> cbTipoObra;
@@ -400,30 +446,38 @@ public class FrmObra extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
+    private javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel32;
+    private javax.swing.JPanel jPanel33;
+    private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
+    private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
+    private javax.swing.JPanel jPanel41;
     private javax.swing.JPanel jPanel42;
+    private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlbimagen;
     private javax.swing.JPanel lblPrecio;
     private javax.swing.JPanel pnlPrecio;
-    private javax.swing.JTextArea txaObra;
     private javax.swing.JTextField txtCodObra;
     private javax.swing.JTextField txtNomObra;
     private javax.swing.JTextField txtPrecioObra;
+    private javax.swing.JTextField txturl;
     // End of variables declaration//GEN-END:variables
 }

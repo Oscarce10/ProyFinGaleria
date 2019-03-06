@@ -278,6 +278,11 @@ public class FrmVenta extends javax.swing.JInternalFrame {
         jPanel56.add(jPanel28, java.awt.BorderLayout.PAGE_END);
 
         txtImpVenta.setEditable(false);
+        txtImpVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImpVentaActionPerformed(evt);
+            }
+        });
         jPanel56.add(txtImpVenta, java.awt.BorderLayout.CENTER);
 
         jPanel18.add(jPanel56);
@@ -319,6 +324,10 @@ public class FrmVenta extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtImpVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImpVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImpVentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

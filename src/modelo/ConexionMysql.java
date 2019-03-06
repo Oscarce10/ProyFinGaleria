@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
+// falta constructor parametrico 
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -31,13 +32,16 @@ import java.util.Properties;
 import java.util.concurrent.Executor;
 
 /**
- *
+ * se creo una clase ConexionMysql la cual permite conectar la base de datos con el programa
  * @author Estudiante
  */
 public class ConexionMysql {
 
     private Connection conexion;
 
+    /**
+     * consttructor basico que permite instanciar la clase ConexionMysql con valores nulos 
+     */
     public ConexionMysql() {
         this.conexion = null;
         try {
@@ -53,13 +57,21 @@ public class ConexionMysql {
         }
     }
 
+    /**
+     * retorna la conexion 
+     * @return Connection 
+     */
     public Connection getConexion() {
         return conexion;
     }
 
+    /**
+     * le asigna a la variable conexion un valor 
+     * @param conexion conexion 
+     */
     public void setConexion(Connection conexion) {
         this.conexion = conexion;
     }
-    
+
     
 }
