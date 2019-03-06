@@ -100,17 +100,20 @@ public class ArchPdf {
             long tot = 0;
             while (txt.next()) {
                 mipdf.add(new Paragraph(txt.getString(3) + "          " + txt.getString(1) + "            " + txt.getString(4) + "                " + txt.getLong(7)));
-                tot+=txt.getLong(7);
+                tot += txt.getLong(7);
             }
-            mipdf.add(new Paragraph("--------------------------------------------------------------------------"+"\n"));
-            mipdf.add(new Paragraph("Total Ventas                                               "+tot));
+            mipdf.add(new Paragraph("--------------------------------------------------------------------------" + "\n"));
+            mipdf.add(new Paragraph("Total Ventas                                                            " + tot));
             // se añade el contendio del PDF
             mipdf.close(); //se cierra el PDF&
-            JOptionPane.showMessageDialog(null, "Documento PDF creado");
+            JOptionPane.showMessageDialog(null, "Reporte de ventas al "+dtf.format(now)+" creado");
+            Desktop.getDesktop().open(new File(this.ruta_destino + "reporte_" + r + ".pdf"));
         } catch (DocumentException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ArchPdf.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
